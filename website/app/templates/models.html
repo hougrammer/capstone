@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block jumbotron %}
+  <h1>ML Models</h1>
+  <p>Can neural nets learn something about Reddit?</p> 
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h2>Post Scorer</h2>
+
+    <div>
+      Type in post and get it scored: <input type="text" name="keyword" value=""><br>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Subreddit Dropdown
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">AskReddit</a>
+          <a class="dropdown-item" href="#">funny</a>
+          <a class="dropdown-item" href="#">etc</a>
+        </div>
+      </div>
+      <p>Maybe have an API to allow user to log in and make said post.</p>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block jumbotron %}
+  <h1>Subreddits / Users</h1>
+  <p>Statistics and explorations about the users of Reddit and communities they belong to.</p> 
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h2>Embedding Visualization</h2>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.subreddit.label }}<br>
+            {{ form.subreddit(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <p>Something similar to the below picture. Maybe built with D3 and not in 3D. Have the ability to click on a subreddit and move to neighbors based off of embedding similarity.</p>
+    <img src="https://minimaxir.com/img/reddit-graph/rd_comments_net_hd.png" height="400">
+
+    <h2>Pretty Graphs</h2>
+    <img src="https://media.wired.com/photos/593278f0a31264584499534b/4:3/w_1400,c_limit/redditwide.jpg" height="400">
+
+    <h2>User Exploration</h2>
+    <p>Maybe have something similar for users. Have to think about the ethics of this one but I don't think it's too bad.</p>
+  </div>
+{% endblock %}
