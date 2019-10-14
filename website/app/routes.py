@@ -18,9 +18,11 @@ def posts():
 def subreddits():
 	return render_template(
 		'subreddits.html',
-		main_title='Subreddits/Users',
-		form=forms.SubredditForm())
+		main_title='Subreddits/Users')
 
-@app.route('/closest_subreddits')
-def closest_subreddits():
-	return jsonify(list(subreddit_embeddings.get_closest('askreddit')))
+@app.route('/closest_subreddits/<subreddit>', methods=['GET'])
+def closest_subreddits(subreddit):
+	response = [
+		{'subreddit': x[0], 'distance': x[1]} for x in subreddit_embeddings.get_closest(subreddit)
+	]
+	return jsonify(response)
