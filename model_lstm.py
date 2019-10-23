@@ -14,21 +14,32 @@ class ModelLstm:
     '''
     Model with an LSTM after the title embedding.
     '''
+    _embeddings = {
+        50: 'data/glove.6B.50d.txt',
+        100: 'data/glove.6B.100d.txt',
+        200: 'data/glove.6B.200d.txt',
+        300: 'data/glove.6B.300d.txt'
+    }
+    
     def __init__(self,
                  model_name,
+                 word_embedding_dim,
                  existing_model_path='',
-                 embeddings_path='data/glove.6B.50d.txt',
                  embedding_maxfeatures=40000,
                  titles_maxlen=20,
-                 word_embedding_dims=50,
-                 meta_embedding_dims=64,):
+                 meta_embedding_dims=64,
+                 dropout=0.5):
         self.load_data()
         self.model_name = model_name
-        self.embeddings_path = embeddings_path
+        
         self.embedding_maxfeatures = embedding_maxfeatures
         self.titles_maxlen = titles_maxlen
-        self.word_embedding_dims = word_embedding_dims
+        self.word_embedding_dim = word_embedding_dim
+        self.embeddings_path = self._embeddings[word_embedding_dim]
+        
         self.meta_embedding_dims = meta_embedding_dims
+        self.dropout=dropout
+        
         if existing_model_path:
             self.model = load_model(existing_model_path)
         else:
@@ -55,7 +66,7 @@ class ModelLstm:
         Returns embedding matrix based off loaded embeddings.
         '''
         embedding_vectors = {}
-        weights_matrix = np.zeros((self.embedding_maxfeatures + 1, 50))
+        weights_matrix = np.zeros((self.embedding_maxfeatures + 1, self.word_embedding_dim))
 
         with open(self.embeddings_path, 'r') as f:
             for line in f:
@@ -84,7 +95,7 @@ class ModelLstm:
         title_input = Input(shape=(self.titles_maxlen,), name='title_in')
         title_embedding = Embedding(
             self.embedding_maxfeatures + 1,
-            self.word_embedding_dims,
+            self.word_embedding_dim,
             weights=[self.get_embedding_matrix()])(title_input)
         
         title_lstm = LSTM(256, dropout = 0.3, recurrent_dropout = 0.3)(title_embedding)
@@ -127,7 +138,7 @@ class ModelLstm:
             ModelCheckpoint(model_checkpoint_path)
         ]
         if early_stop:
-            callbacks.append(EarlyStopping(monitor='val_loss', patience=1))
+            callbacks.append(EarlyStopping(monitor='val_loss'))
         
         history = self.model.fit(
             x=[self.titles_train, self.hours_train, self.weekdays_train, self.minutes_train, self.dates_train],
