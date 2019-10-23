@@ -130,21 +130,27 @@ function update(subreddit, data) {
     .attr('cx', (d, i) => leafX(d, i))
     .attr('cy', (d, i) => leafY(d, i));
 
-  let leafText = svg.selectAll("text.leaf").data(leaves);
-  // Update existing
-  leafText.text(d => d.subreddit);
-  // Initial population
+  // let leafText = svg.selectAll("text.leaf").data(leaves);
   d3.timeout(() => {
-    leafText.enter()
+    svg.selectAll("text.subreddit").data(leaves)
+      .enter()
       .append("text")
-      .attr("class", "leaf")
+      .attr("class", "subreddit")
       .text(d => d.subreddit)
       .style('font-size', 10)
       .attr('x', (d, i) => leafX(d, i) + circleRadius)
       .attr('y', (d, i) => leafY(d, i) + circleRadius);
+    svg.selectAll("text.distance").data(leaves)
+      .enter()
+      .append("text")
+      .attr("class", "distance")
+      .text(d => "distance: " + d.distance.toFixed(3))
+      .style('font-size', 10)
+      .attr('x', (d, i) => leafX(d, i) + circleRadius)
+      .attr('y', (d, i) => leafY(d, i) + circleRadius)
+      .attr("dy", 10);
   }, 100*(leaves.length));
 }
-
 
 function getSimilarSubreddits(subreddit) {
   let statusText = "Getting closest subreddits to '" + subreddit + "'...";
@@ -153,6 +159,9 @@ function getSimilarSubreddits(subreddit) {
   let t = performance.now();
   d3.json("/closest_subreddits/" + subreddit, {method: "GET"})
     .then(json => {
+      svg.selectAll("circle").remove();
+      svg.selectAll("text").remove();
+      svg.selectAll("line").remove();
       update(subreddit, json);
       console.log(json);
       console.log("completed in " + (performance.now() - t) + "ms");
