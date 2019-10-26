@@ -1,4 +1,3 @@
-// Margins, height, and width
 const margin = { top: 50, right: 100, bottom: 100, left: 50 };
 const height = 800;
 const width = 1000;
@@ -24,8 +23,12 @@ let colorScale = d3.scaleSequential(d3.interpolateReds)
 // Main svg
 let svg = d3.select("#subredditVisualization")
   .append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .append("g")
   .attr("width", w)
-  .attr("height", h);
+  .attr("height", h)
+  .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
 // Status text
 let status = svg.append("text")

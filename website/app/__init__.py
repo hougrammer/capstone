@@ -7,5 +7,7 @@ app.config['SECRET_KEY'] = 'secret'
 
 from app import routes
 from app import subreddit_embeddings
+from app import post_counts
 
 subreddit_embeddings.load_embeddings()
+post_counts.load_counts()
