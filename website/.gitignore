@@ -1,4 +1,0 @@
-*.ipynb*
-!post_counts.ipynb
-app/__pycache__/*
-data/*
