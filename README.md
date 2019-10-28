@@ -13,6 +13,7 @@ website
   |- app
       |- data
           |- subreddit_embeddings.pickle (64MB: https://drive.google.com/open?id=1_vvs-1TvXPTyg2wG7oGEqzV4Y-pAnNDq)
+          |- post_counts.pickle (145MB: https://drive.google.com/open?id=1Bz4D-2-RkgTuimM-kI5xBfncrhL8aaAE)
   |- preloaded_files
       |- captions_train_flat_reddit.pkl
       |- captions_train_flat_coco.pkl (42.9MB : https://drive.google.com/file/d/1AoQucAasSAklaK8jmChwzA5ziWY9_I_C/view?usp=sharing)
