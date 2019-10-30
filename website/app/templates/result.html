@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<center>
+   <body>
+     <h3> Image Title and Comment </h3>
+      <table border = 5>
+            <tr>
+              <td>Title</td>
+              <td><b> {{ results['caption']['coco'] }} </b> </td>
+            </tr>
+            <tr>
+              <td>Image</td>
+              <td> <img src="{{results['image']}}"
+                          alt="user uploaded image"
+                          style="width:300px;height:300px;"> </td>
+            </tr>
+            <tr>
+              <td>Comment</td>
+              <td><center> {{ results['caption']['reddit'] }} </center></td>
+            </tr>
+      </table>
+   </body>
+ </center>
+   <p><small><b>Disclaimer</b>: The algorithms behind this image captioning is based on
+      publicly available image datasets such as Flickr, COCO and Reddit images.
+      Users are advised that texts generated based on reddit dataset can
+      sometimes be aggressive due to the nature of the dataset.
+      Any insult, innuendo, aggressive jokes are subject to user perceptions of
+      the context. Creators of this website will not be responsible for any damages
+      or losses in connection with the use of our website.</small></p>
+</html>

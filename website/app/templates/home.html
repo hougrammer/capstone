@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<center>
+  <title>Upload new File</title>
+  <h1>Upload an image file to generate a title and comment</h1>
+    <form action="http://127.0.0.1:5000/result" method=post enctype=multipart/form-data>
+      <input type=file name=file>
+      <input type=submit value=Upload>
+    </form>
+  <h3> <font color="blue">Sample images</font></h3>
+  <table border = 5>
+        <tr>
+          <th>sample image name</th>
+          <th>sample image</th>
+        </tr>
+        <tr>
+          <td><center> <a href="http://127.0.0.1:5000/example_snow">snow man</a> </center></td>
+          <td> <img src="{{ images['snow'] }}"
+                      alt="example image"
+                      style="width:128px;height:128px;"> </td>
+        </tr>
+        <tr>
+          <td><center> <a href="http://127.0.0.1:5000/example_lunchbox">lunch box</a></center> </td>
+          <td> <img src="{{ images['lunchbox'] }}"
+                      alt="example image"
+                      style="width:128px;height:128px;"> </td>
+        </tr>
+        <tr>
+          <td><center> <a href="http://127.0.0.1:5000/example_parrot">parrot</a> </center></td>
+          <td> <img src="{{ images['parrot'] }}"
+                      alt="example image"
+                      style="width:128px;height:128px;"> </td>
+        </tr>
+
+  </table>
+  </center>
+  <p><small><b>Disclaimer</b>: The algorithms behind this image captioning is based on
+     publicly available image datasets such as Flickr, COCO and Reddit images.
+     Users are advised that texts generated based on reddit dataset can
+     sometimes be aggressive due to the nature of the dataset.
+     Any insult, innuendo, aggressive jokes are subject to user perceptions of
+     the context. Creators of this website will not be responsible for any damages
+     or losses in connection with the use of our website.</small></p>
+</html>
