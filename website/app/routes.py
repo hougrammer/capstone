@@ -1,4 +1,4 @@
-from app import app, subreddit_embeddings, forms
+from app import app, subreddit_embeddings, post_counts
 from flask import render_template, jsonify
 import os
 from flask import Flask, flash, request, redirect, url_for, send_from_directory, render_template
@@ -105,3 +105,8 @@ def closest_subreddits(subreddit):
 		{'subreddit': x[0], 'distance': x[1]} for x in subreddit_embeddings.get_closest(subreddit)
 	]
 	return jsonify(response)
+
+
+@app.route('/post_counts/<subreddit>', methods=['GET'])
+def get_post_counts(subreddit):
+	return jsonify(post_counts.get_counts(subreddit))
