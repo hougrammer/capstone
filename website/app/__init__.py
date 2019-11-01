@@ -1,6 +1,7 @@
 from flask import Flask
 
 app = Flask(__name__)
+app.debug = True
 
 # Obviously this site is not that secure. If you found this and can exploit it, go ahead.
 app.config['SECRET_KEY'] = 'secret'
