@@ -1,0 +1,8 @@
+!.gitignore
+data/*
+logs/*
+.ipynb_checkpoints/*
+models/*
+*.pickle
+__pycache__/*
+sandbox.ipynb
