@@ -11,3 +11,4 @@ from app import post_counts
 
 subreddit_embeddings.load_embeddings()
 post_counts.load_counts()
+
