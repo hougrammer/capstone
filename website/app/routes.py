@@ -56,6 +56,19 @@ def closest_subreddits(subreddit):
 def get_post_counts(subreddit):
     return jsonify(post_counts.get_counts(subreddit))
 
+@app.route('/score_post', methods=['POST'])
+def score_post():
+    if not post_scorer.initialized:
+        post_scorer.initialize()
+    response = post_scorer.score(
+        request.json['title'],
+        request.json['hour'],
+        request.json['minute'],
+        request.json['weekday'],
+        request.json['date'])
+    print(response)
+    return jsonify({'score': float(response)})
+
 @app.route('/images')
 def home():
     snow_image = os.path.join(app.config['EXAMPLE_FOLDER'], 'snow.jpg')
@@ -121,30 +134,3 @@ def example_parrot():
     caption = {"coco": 'a small bird on a tree branch with a blurry background', "reddit": 'you found a fossil'}
     result = {"image": img_url, "caption": caption}
     return render_template("example_parrot.html", results=result)
-
-@app.route('/models')
-def models():
-    return render_template('models.html', main_title='ML Models')
-
-@app.route('/posts')
-def posts():
-    return render_template('posts.html', main_title='Posts/Comments')
-
-@app.route('/subreddits', methods=['GET', 'POST'])
-def subreddits():
-    return render_template('subreddits.html', main_title='Subreddits/Users')
-
-@app.route('/closest_subreddits/<subreddit>', methods=['GET'])
-def closest_subreddits(subreddit):
-    response = [
-        {'subreddit': x[0], 'distance': x[1]} for x in subreddit_embeddings.get_closest(subreddit)
-    ]
-    return jsonify(response)
-
-@app.route('/post_counts/<subreddit>', methods=['GET'])
-def get_post_counts(subreddit):
-    return jsonify(post_counts.get_counts(subreddit))
-
-@app.route('/score_post', methods=['POST'])
-def score_post():
-    return render_template('posts.html', main_title='Posts/Comments')

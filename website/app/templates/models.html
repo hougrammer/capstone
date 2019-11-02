@@ -10,9 +10,16 @@
   <h2>Post Scorer</h2>
 
   <div>
-    Type in post and get it scored: <input type="text" name="keyword" value=""><br>
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Type in post and get it scored:<br>
+      Title: <input type="text" id="titleInput"><br>
+      Hour: <input type="text" id="hourInput"><br>
+      Minute: <input type="text" id="minuteInput"><br>
+      Weekday: <input type="text" id="weekdayInput"><br>
+      Date: <input type="text" id="dateInput"><br>
+      <button id="scoreSubmit" class="btn">Score Post</button><br>
+      <script src="{{ url_for('static', filename='score_post.js') }}"></script>
+    <!-- <div class="dropdown"> -->
+<!--       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Subreddit Dropdown
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -21,7 +28,7 @@
         <a class="dropdown-item" href="#">etc</a>
       </div>
     </div>
-    <p>Maybe have an API to allow user to log in and make said post.</p>
+    <p>Maybe have an API to allow user to log in and make said post.</p> -->
   </div>
 
   <h2>Image Caption Generation</h2>
