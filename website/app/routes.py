@@ -5,9 +5,6 @@ from flask import Flask, flash, request, redirect, url_for, send_from_directory,
 from flask import send_file
 
 import os
-# from werkzeug.utils import secure_filename
-# from app.captions_engine import generate_caption
-# from PIL import Image
 
 UPLOAD_FOLDER = os.getcwd() + '/app/uploads'
 EXAMPLE_FOLDER = os.path.join("static", "imgs")
@@ -15,13 +12,49 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['EXAMPLE_FOLDER'] = EXAMPLE_FOLDER
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
+
 post_scorer = PostScorer('app/data/word_tokenizer.pickle', 'app/models/model_lstm_embedding100D.03-0.67.hdf5')
 # post_scorer.initialize()
+
+# Only load ML models if not debugging. Else TF takes forever to import.
+if not app.config['DEBUG']:
+    from app.captions_engine import generate_caption
+    from werkzeug.utils import secure_filename
+    from PIL import Image
 
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
+
+@app.route('/models')
+def models():
+    snow_image = os.path.join(app.config['EXAMPLE_FOLDER'], 'snow.jpg')
+    lunch_image = os.path.join(app.config['EXAMPLE_FOLDER'], 'lunchbox.jpg')
+    parrot_image = os.path.join(app.config['EXAMPLE_FOLDER'], 'parrot.jpg')
+    images_dict = {'snow': snow_image, 'lunchbox': lunch_image, 'parrot': parrot_image}
+    return render_template('models.html', main_title='ML Models', images=images_dict)
+
+@app.route('/posts')
+def posts():
+    return render_template('posts.html', main_title='Posts/Comments')
+
+@app.route('/subreddits', methods=['GET', 'POST'])
+def subreddits():
+    return render_template(
+        'subreddits.html',
+        main_title='Subreddits/Users')
+
+@app.route('/closest_subreddits/<subreddit>', methods=['GET'])
+def closest_subreddits(subreddit):
+    response = [
+        {'subreddit': x[0], 'distance': x[1]} for x in subreddit_embeddings.get_closest(subreddit)
+    ]
+    return jsonify(response)
+
+@app.route('/post_counts/<subreddit>', methods=['GET'])
+def get_post_counts(subreddit):
+    return jsonify(post_counts.get_counts(subreddit))
 
 @app.route('/images')
 def home():

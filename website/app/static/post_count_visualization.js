@@ -176,13 +176,12 @@ function getPostCounts(subreddit) {
     .then(json => {
       relativeMin = d3.min(json);
       relativeMax = d3.max(json);
-      relativeColorScale.domain([relativeMin, relativeMax])
+      relativeColorScale.domain([relativeMin, relativeMax]);
       updateData(subreddit, json);
       console.log(json);
       console.log("completed in " + (performance.now() - t) + "ms");
       console.log("relative min post count: " + relativeMin);
       console.log("relative max post count: " + relativeMax);
-      // status.text("");
   });
 }
 

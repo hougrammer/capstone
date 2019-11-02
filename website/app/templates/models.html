@@ -1,27 +1,83 @@
 {% extends "base.html" %}
 
 {% block jumbotron %}
-  <h1>ML Models</h1>
-  <p>Can neural nets learn something about Reddit?</p> 
+<h1>ML Models</h1>
+<p>Can neural nets learn something about Reddit?</p> 
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-    <h2>Post Scorer</h2>
+<div class="container">
+  <h2>Post Scorer</h2>
 
-    <div>
-      Type in post and get it scored: <input type="text" name="keyword" value=""><br>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Subreddit Dropdown
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">AskReddit</a>
-          <a class="dropdown-item" href="#">funny</a>
-          <a class="dropdown-item" href="#">etc</a>
-        </div>
+  <div>
+    Type in post and get it scored: <input type="text" name="keyword" value=""><br>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Subreddit Dropdown
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">AskReddit</a>
+        <a class="dropdown-item" href="#">funny</a>
+        <a class="dropdown-item" href="#">etc</a>
       </div>
-      <p>Maybe have an API to allow user to log in and make said post.</p>
     </div>
+    <p>Maybe have an API to allow user to log in and make said post.</p>
   </div>
-{% endblock %}
+
+  <h2>Image Caption Generation</h2>
+  <div>
+    <form action="http://127.0.0.1:5000/result" method=post enctype=multipart/form-data>
+      <div class="input-group">
+        <input type=file name=file>
+        <input type=submit value=Upload>
+      </div>
+    </form>
+    <br>
+    <p><small><b>Disclaimer</b>: The algorithms behind this image captioning is based on
+     publicly available image datasets such as Flickr, COCO and Reddit images.
+     Users are advised that texts generated based on reddit dataset can
+     sometimes be aggressive due to the nature of the dataset.
+     Any insult, innuendo, aggressive jokes are subject to user perceptions of
+     the context. Creators of this website will not be responsible for any damages
+     or losses in connection with the use of our website.</small></p>
+     <br>
+  </div>
+
+  <div class="col-lg-6">
+    <h3>Sample Images</h3>
+    <table class="table table-responsive-sm">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      
+      <tr>
+        <td style="vertical-align: middle">
+          <a href="http://127.0.0.1:5000/example_snow">Snowman</a>
+        </td>
+        <td> 
+          <img src="{{ images['snow'] }}" alt="example image" style="width:128px;height:128px;">
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle">
+          <a href="http://127.0.0.1:5000/example_lunchbox">Lunch Box</a>
+        </td>
+        <td> 
+          <img src="{{ images['lunchbox'] }}" alt="example image" style="width:128px;height:128px;">
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle">
+          <a href="http://127.0.0.1:5000/example_parrot">Parrot</a>
+        </td>
+        <td>
+          <img src="{{ images['parrot'] }}" alt="example image" style="width:128px;height:128px;"> 
+        </td>
+      </tr>
+    </table>
+  </div>
+ </div>
+ {% endblock %}
