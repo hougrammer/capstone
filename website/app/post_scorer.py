@@ -56,7 +56,8 @@ class PostScorer:
         import numpy as np
 
         t = time()
-        print('Scoring {}\n{}\n{}\n{}\n{}\n'.format(title, hour, minute, weekday, dayofyear))
+        print('Scoring title:{}\nhour:{}\nminute:{}\nweekday:{}\ndate:{}'
+            .format(title, hour, minute, weekday, dayofyear))
         encoded_title = sequence.pad_sequences(
             self.tokenizer.texts_to_sequences([title]),
             maxlen=20 # model was trained with max title len = 20
