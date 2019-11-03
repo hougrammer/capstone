@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block jumbotron %}
+  <img src="{{ url_for('static', filename='imgs/icon.png') }}">
   <h1>Reddit Explorer</h1>
-  <p>Welcome to Reddit Explorer!  Click something below to get started.</p> 
+  <p>Welcome to Reddit Explorer!  Click something below to get started.</p>   
 {% endblock %}
 
 {% block content %}

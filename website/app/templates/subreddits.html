@@ -9,6 +9,36 @@
 
 
 <div class="container">
+  <h2>What is a Subreddit?</h2>
+  <div class="row">   
+    <div class="col-lg-4">
+      <p>
+        Reddit is divided into several message boards centered around specific purposes and topics.
+        Users may subscribe to these "subreddits" in order to receive updates to their front page,
+        customized to their own interests.
+      </p>
+      <p>
+        This table shows the top 10 subreddits by subscriber count. Some subreddits have names
+        that are quite self explantory, like <a href="https://reddit.com/r/science">science</a>, while
+        others, like <a href="https:reddit.com/r/askreddit">AskReddit</a>, require visiting them to
+        understand their purpose.
+      </p>
+    </div>
+
+    <div class="col-lg-8">
+      <table class="table table-responsive-sm" id="subredditTable">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Subreddit</th>
+            <th>Subscribers</th>
+          </tr>
+        </thead>
+      </table>
+      <small>Data from <a href="https://redditlist.com">redditlist.com</a></small>
+      <script src="{{ url_for('static', filename = 'subreddit_subscribers.js') }}"></script>
+    </div>
+  </div>
   <h2>Embedding Visualization</h2>
 
   <input id="subredditInput" type="text" onfocus="this.value=''" placeholder="Subreddit">

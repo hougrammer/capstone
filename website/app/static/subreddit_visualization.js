@@ -1,6 +1,6 @@
-const margin = { top: 50, right: 100, bottom: 100, left: 50 };
-const height = 800;
-const width = 1000;
+const margin = { top: 50, right: 50, bottom: 50, left: 50 };
+const height = 600;
+const width = 800;
 const h = height - margin.top - margin.bottom;
 const w = width - margin.left - margin.right;
 const minRadius = 100;
@@ -21,13 +21,13 @@ let colorScale = d3.scaleSequential(d3.interpolateReds)
   .domain([0, maxPercent]);
 
 // Main svg
-let svg = d3.select("#subredditVisualization")
+let svg0 = d3.select("#subredditVisualization")
   .append("svg")
   .attr("width", width)
-  .attr("height", height)
-  .append("g")
-  .attr("width", w)
-  .attr("height", h)
+  .attr("height", height);
+let svg = svg0.append("g")
+  // .attr("width", w)
+  // .attr("height", h)
   .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
 // Status text
@@ -72,7 +72,7 @@ function update(subreddit, data) {
       .attr("cy", center.y);
 
     d3.timeout(() => {
-      selection.remove(); // Because else the lines appear on top of the root
+      // selection.remove(); // Because else the lines appear on top of the root
       getSimilarSubreddits(d.subreddit);
     }, 400);
   }

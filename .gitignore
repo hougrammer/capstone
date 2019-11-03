@@ -1,0 +1,5 @@
+.ipynb_checkpoints/*
+website/.ipynb_checkpoints/*
+secret.txt
+data/*
+website/data/*
