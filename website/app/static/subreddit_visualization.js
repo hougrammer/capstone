@@ -1,6 +1,6 @@
 const margin = { top: 50, right: 50, bottom: 50, left: 50 };
 const height = 600;
-const width = 800;
+const width = 600;
 const h = height - margin.top - margin.bottom;
 const w = width - margin.left - margin.right;
 const minRadius = 100;
