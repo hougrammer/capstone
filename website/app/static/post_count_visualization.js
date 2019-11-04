@@ -1,6 +1,6 @@
 const offset = 0; // Jan 1, 2018 was a Monday
-const margin = { top: 50, right: 100, bottom: 100, left: 50 };
-const height = 300;
+const margin = { top: 50, right: 50, bottom: 50, left: 50 };
+const height = 200;
 const width = 1000;
 const h = height - margin.top - margin.bottom;
 const w = width - margin.left - margin.right;
@@ -112,6 +112,10 @@ function updateScale() {
 }
 
 function updateData(subreddit, data) {
+  d3.select("#postStatus")
+    .html(`Showing post density for 
+      <a href="https://reddit.com/r/${subreddit}" target="_blank">r/${subreddit}</a>`);
+
   let cell = svg.selectAll("rect.cell")
     .data(data)
     .enter()

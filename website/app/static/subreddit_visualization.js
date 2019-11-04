@@ -102,7 +102,8 @@ function update(subreddit, data) {
     .attr('r', circleRadius)
     .attr('cx', center.x)
     .attr('cy', center.y)
-    .on("mouseover", function(){ d3.select(this).style('cursor', 'pointer'); });
+    .on("mouseover", function(){ d3.select(this).style('cursor', 'pointer'); })
+    .on('click', d => { window.open("https://reddit.com/r/" + d.subreddit, "_blank"); });
 
   let rootText = svg.selectAll("text.root").data(root);
   // Update existing
