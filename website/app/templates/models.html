@@ -9,28 +9,31 @@
 <div class="container">
   <h2>Post Scorer</h2>
 
-  <div>
-    Type in post and get it scored:<br>
-      Title: <input type="text" id="titleInput"><br>
-      Hour: <input type="text" id="hourInput"><br>
-      Minute: <input type="text" id="minuteInput"><br>
-      Weekday: <input type="text" id="weekdayInput"><br>
-      Date: <input type="text" id="dateInput"><br>
+  <div class="row">
+    <div class="col-lg-6">
+      <p>
+        Can we take what we've learned and use it to help judge whether a post a perform well on
+        Reddit? We've seen that there is some temporal relationships in the data. To the right, you
+        can type in a post title and relevant time metadata to get it scored by a neural net.
+      </p>
+    </div>
+    <div class="col-lg-6">
+      <style type="text/css">
+        .scoreInput {
+          width: 100%
+        }
+      </style>
+      Title: <input class="scoreInput" type="text" id="titleInput"><br>
+      Hour: <input class="scoreInput" type="text" id="hourInput"><br>
+      Minute: <input class="scoreInput" type="text" id="minuteInput"><br>
+      Weekday: <input class="scoreInput" type="text" id="weekdayInput"><br>
+      Date: <input class="scoreInput" type="text" id="dateInput"><br><br>
       <button id="scoreSubmit" class="btn">Score Post</button><br>
       <p id="scoreResult"></p>
       <script src="{{ url_for('static', filename='score_post.js') }}"></script>
-    <!-- <div class="dropdown"> -->
-<!--       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Subreddit Dropdown
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">AskReddit</a>
-        <a class="dropdown-item" href="#">funny</a>
-        <a class="dropdown-item" href="#">etc</a>
-      </div>
     </div>
-    <p>Maybe have an API to allow user to log in and make said post.</p> -->
   </div>
+  
 
   <h2>Image Caption Generation</h2>
   <div>
