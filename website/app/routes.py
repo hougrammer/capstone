@@ -134,3 +134,7 @@ def example_parrot():
     caption = {"coco": 'a small bird on a tree branch with a blurry background', "reddit": 'you found a fossil'}
     result = {"image": img_url, "caption": caption}
     return render_template("example_parrot.html", results=result)
+
+@app.route('/cal', methods=['GET'])
+def cal():
+    return render_template("cal.html", results=result)
