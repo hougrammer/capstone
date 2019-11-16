@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<center>
+   <body>
+     <h3> Image Title and Comment </h3>
+      <table border = 5>
+        <tr>
+          <td>Title</td>
+          <td><b><center> {{ results['caption']['coco'] }} </center></b> </td>
+        </tr>
+
+        <tr>
+          <td>Comment</td>
+          <td><center> {{ results['caption']['reddit'] }} </center></td>
+        </tr>
+      </table>
+<img src="{{results['image']}}"
+    alt="user uploaded image">
+   </body>
+ </center>
+</html>
