@@ -138,3 +138,28 @@ def example_parrot():
 @app.route('/cal', methods=['GET'])
 def cal():
     return render_template("cal.html", results=result)
+
+@app.route('/redditsubreddits')
+def redditsubreddits():
+    img_url = os.path.join(app.config['EXAMPLE_FOLDER'], 'redditsubreddits.png')
+    caption = {"coco": 'All subreddit posts for 2006 to 2019', "reddit": 'Top subreddits'}
+    result = {"image": img_url, "caption": caption}
+    return render_template("redditsubreddits.html", results=result)
+
+@app.route('/redditauthor')
+def redditauthor():
+    img_url = os.path.join(app.config['EXAMPLE_FOLDER'], 'redditauthor.png')
+    caption = {"coco": 'All subreddit authors for 2006-2019', "reddit": 'Top authors'}
+    result = {"image": img_url, "caption": caption}
+    return render_template("redditauthor.html", results=result)
+
+@app.route('/redditcomments')
+def redditcomments():
+    img_url = os.path.join(app.config['EXAMPLE_FOLDER'], 'redditcomments.png')
+    caption = {"coco": 'All AskReddit top word in comments for 2006-2019', "reddit": 'Top comments'}
+    result = {"image": img_url, "caption": caption}
+    return render_template("redditcomments.html", results=result)
+
+@app.route('/treemap', methods=['GET'])
+def treemap():
+    return render_template("treemap.html", results=result)

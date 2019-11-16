@@ -20,17 +20,42 @@
   <p id="postStatus" style="font-size: large"></p>
 
   <script src="{{ url_for('static', filename = 'post_count_visualization.js') }}"></script>
+  <br>
 
-  <h2>Reddit posts heatmap for 2006 to 2019</h2>
-  This heatmap is interactive and provides with number of submissions to reddit daily for 12+ years.
-
-  <a href="{{ url_for('cal') }}">cal</a>
+  <h2>Reddit posts correlation</h2>
+  <p style="font-size: large" >This heatmap is interactive and provides with number of submissions to reddit daily for 12+ years</p>
+  <button data-toggle-text="Oh no! Switch back!"><a href="{{ url_for('cal') }}">Reddit Heatmap</a></button>
   
+  <br>  <br>  <br>  <br>
+
+  <h2>Reddit top comments</h2>
+  <p style="font-size: large" >This wordcloud is generated with comments to reddit daily for 12+ years</p>
+  <button data-toggle-text="Oh no! Switch back!"><a href="{{ url_for('redditcomments') }}">Reddit Comments - AskReddit</a></button>
+  
+  <br>  <br>  <br>  <br>
+
+
+  <h2>Reddit top subreddits</h2>
+  <p style="font-size: large" >This treemap is interactive and provides with top subreddits to reddit daily for 12+ years.</p>
+  <button data-toggle-text="Oh no! Switch back!"><a href="{{ url_for('redditsubreddits') }}">Top Subreddits</a></button>
+  
+  <br>  <br>  <br>  <br>
+
+  <h2>Reddit top authors</h2>
+  <p style="font-size: large" >This treemap is interactive and provides with top authors to reddit daily for 12+ years.</p>
+  <button data-toggle-text="Oh no! Switch back!">  <a href="{{ url_for('redditauthor') }}">Top Authors</a></button>
+  
+  <br>  <br>  <br>  <br>
+
+  <h2>Reddit interactive nested posts structure</h2>
+  <p style="font-size: large" >This treemap is interactive and provides with top subreddits to reddit daily for 12+ years.</p>
+  <button data-toggle-text="Oh no! Switch back!">  <a href="{{ url_for('treemap') }}">Reddit Treemap</a></button>
+
+  <br>  <br>  <br>  <br>
 
   <!-- <h2>Pretty Graphs</h2>
   <img src="https://foundationinc.co/wp-content/uploads/2019/06/Avg-Length-Top-Posts.png" height="400">
   <img src="https://i.redd.it/yj4otlos2wq31.png" height="400">
-
 
   <h2>Sentiment Analyzer</h2>
   Type keyword in and get sentiment: <input type="text" name="keyword" value=""><br> -->
