@@ -17,8 +17,8 @@ post_scorer = PostScorer('app/data/word_tokenizer.pickle', 'app/models/model_lst
 # post_scorer.initialize()
 
 # Only load ML models if not debugging. Else TF takes forever to import.
-# if not app.config['DEBUG']:
-if True:
+if not app.config['DEBUG']:
+# if True:
     from app.captions_engine import generate_caption
     from werkzeug.utils import secure_filename
     from PIL import Image
@@ -40,11 +40,13 @@ def models():
 def posts():
     return render_template('posts.html', main_title='Posts/Comments')
 
-@app.route('/subreddits', methods=['GET', 'POST'])
+@app.route('/subreddits', methods=['GET'])
 def subreddits():
-    return render_template(
-        'subreddits.html',
-        main_title='Subreddits/Users')
+    return render_template('subreddits.html', main_title='Subreddits/Users')
+
+@app.route('/subreddits2', methods=['GET'])
+def subreddits2():
+    return render_template('subreddits2.html', main_title='Subreddits/Users')
 
 @app.route('/closest_subreddits/<subreddit>', methods=['GET'])
 def closest_subreddits(subreddit):
@@ -70,13 +72,19 @@ def score_post():
     print(response)
     return jsonify({'score': float(response)})
 
-@app.route('/images')
-def home():
+@app.route('/scrollytelling', methods=['GET'])
+def scrollytelling():
+    return render_template('scrollytelling.html')
+
+
+
+@app.route('/image_examples')
+def image_examples():
     snow_image = os.path.join(app.config['EXAMPLE_FOLDER'], 'snow.jpg')
     lunch_image = os.path.join(app.config['EXAMPLE_FOLDER'], 'lunchbox.jpg')
     parrot_image = os.path.join(app.config['EXAMPLE_FOLDER'], 'parrot.jpg')
     images_dict = {'snow': snow_image, 'lunchbox': lunch_image, 'parrot': parrot_image}
-    return render_template('home.html', images=images_dict)
+    return render_template('image_examples.html', images=images_dict)
 
 @app.route('/result', methods=['GET', 'POST'])
 def result():

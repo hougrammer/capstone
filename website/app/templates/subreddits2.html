@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block jumbotron %}
+<h1>Subreddits / Users</h1>
+<p>Statistics and explorations about the users of Reddit and communities they belong to.</p> 
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<div id="graphic">
+
+  <!-- Fixed divs for visualizations -->
+  <div class="fixed hidden" id="subredditTableDiv">
+    <table class="table" id="subredditTable">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Subreddit</th>
+          <th>Subscribers</th>
+        </tr>
+      </thead>
+    </table>
+    <small>Data from <a href="https://redditlist.com">redditlist.com</a></small>
+    <script src="{{ url_for('static', filename = 'subreddit_subscribers.js') }}"></script>
+  </div>
+
+  <div class="hidden fixed" id="subredditVisualizationDiv">
+    <div>
+      <input id="subredditInput" type="text" onfocus="this.value=''" placeholder="Subreddit">
+      <button id="subredditSubmit" class="btn">Get Similar Subreddits</button>
+    </div>
+    <div id="subredditVisualization" style="display: inline-block;"></div>
+    <script src="{{ url_for('static', filename = 'subreddit_visualization.js') }}"></script>
+    <small>
+      Data from <a href="https://snap.stanford.edu/data/web-RedditEmbeddings.html">here</a>
+    </small>
+  </div>
+
+  <!-- Divs in containers for explained text -->
+  <div class="container">
+    <div id="subscribersDiv1">
+      <h2>What is a Subreddit?</h2>
+      Reddit is divided into several message boards centered around specific purposes and topics.
+      Users may subscribe to these "subreddits" in order to receive updates to their front page,
+      customized to their own interests.
+    </div>
+
+    <div id="subscribersDiv2">
+      This table shows the top 10 subreddits by subscriber count. Some subreddits have names
+      that are quite self explantory, like <a href="https://reddit.com/r/science">science</a>, while
+      others, like <a href="https:reddit.com/r/askreddit">AskReddit</a>, require visiting them to
+      understand their purpose.
+    </div>
+
+    <div id="embeddingsDiv1">
+      <h2>Subreddit Embeddings</h2>
+      Intuitively, certain subreddits will be similar to each other based on the topic and users
+      within them. It would be interesting if we could quantify this similarity. 
+    </div>
+
+    <div id="embeddingsDiv2">
+      To do so, we utilize a technique often used in ML and NLP to "embed" each subreddit into a
+        vector space, so that we can perform mathematical calculations of similarity on them. These
+        embeddings were trained using a
+        <a href="https://en.wikipedia.org/wiki/Word2vec">word2vec</a> style, where user and
+        subreddit embeddings were simultaneously co-trained.
+    </div>
+
+    <div id="embeddingsDiv3">
+      This visualization on the shows the ten most similar subreddits to center one, with
+      similarity measured as the Euclidean distance between two subreddits' embeddings. Euclidean
+      similarity was chosen over cosine similarity purely because the former is faster to
+      calculate and the semantic meaning is pretty much the same.
+    </div>
+  </div>
+</div>
+{% endblock %}

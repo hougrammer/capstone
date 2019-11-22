@@ -1,6 +1,8 @@
+$(() => {
+
 const margin = { top: 50, right: 50, bottom: 50, left: 50 };
 const height = 600;
-const width = 600;
+const width = 650;
 const h = height - margin.top - margin.bottom;
 const w = width - margin.left - margin.right;
 const minRadius = 100;
@@ -190,3 +192,24 @@ d3.select("#subredditInput")
   });
 
 getSimilarSubreddits("askreddit");
+
+// Waypoints
+$("#embeddingsDiv1").waypoint((direction) => {
+  if (direction === "down") {
+    $("#subredditTableDiv").addClass("hidden");
+  } else {
+    $("subredditVisualizationDiv").addClass("hidden");
+  }
+}, {
+  offset: "90%"
+})
+
+$("#embeddingsDiv2").waypoint((direction) => {
+  if (direction === "down") {
+    $("#subredditVisualizationDiv").removeClass("hidden");
+  }
+}, {
+  offset: "90%"
+})
+
+});
