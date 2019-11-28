@@ -194,15 +194,29 @@ d3.select("#subredditInput")
 getSimilarSubreddits("askreddit");
 
 // Waypoints
+let fadeStep = 10;
+let fadeOutMaxOffset = 100;
+let fadeOutMinOffset = 50;
+let fadeOutRange = d3.range(fadeOutMaxOffset, fadeOutMinOffset, -fadeStep);
+let fadeOutScale = d3.scaleLinear()
+  .domain([fadeOutMaxOffset, fadeOutMinOffset])
+  .range([1, 0]);
+
 $("#embeddingsDiv1").waypoint((direction) => {
   if (direction === "down") {
     $("#subredditTableDiv").addClass("hidden");
-  } else {
-    $("subredditVisualizationDiv").addClass("hidden");
   }
 }, {
   offset: "90%"
-})
+});
+
+$("#embeddingsDiv1").waypoint((direction) => {
+  if (direction === "up") {
+    $("#subredditVisualizationDiv").addClass("hidden");
+  }
+}, {
+  offset: "80%"
+});
 
 $("#embeddingsDiv2").waypoint((direction) => {
   if (direction === "down") {
@@ -210,6 +224,14 @@ $("#embeddingsDiv2").waypoint((direction) => {
   }
 }, {
   offset: "90%"
-})
-
 });
+
+d3.range(fadeOutMaxOffset, fadeOutMinOffset-fadeStep, -fadeStep).forEach((offset) => {
+  $("#postsLinkDiv").waypoint((direction) => {
+    $("#subredditVisualizationDiv").css("opacity", fadeOutScale(offset));
+  }, {
+    offset: `${offset}%`
+  });
+});
+
+}); // end $()

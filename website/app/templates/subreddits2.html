@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/scrollytelling.css') }}">
 <div id="graphic">
 
   <!-- Fixed divs for visualizations -->
@@ -29,11 +29,16 @@
       <input id="subredditInput" type="text" onfocus="this.value=''" placeholder="Subreddit">
       <button id="subredditSubmit" class="btn">Get Similar Subreddits</button>
     </div>
+
     <div id="subredditVisualization" style="display: inline-block;"></div>
+
+    <div>
+      <small>
+        <a href="https://snap.stanford.edu/data/web-RedditEmbeddings.html">Data source</a>
+      </small>
+    </div>
+
     <script src="{{ url_for('static', filename = 'subreddit_visualization.js') }}"></script>
-    <small>
-      Data from <a href="https://snap.stanford.edu/data/web-RedditEmbeddings.html">here</a>
-    </small>
   </div>
 
   <!-- Divs in containers for explained text -->
@@ -71,6 +76,10 @@
       similarity measured as the Euclidean distance between two subreddits' embeddings. Euclidean
       similarity was chosen over cosine similarity purely because the former is faster to
       calculate and the semantic meaning is pretty much the same.
+    </div>
+
+    <div id="postsLinkDiv">
+      <a href="/posts">Posts</a>
     </div>
   </div>
 </div>

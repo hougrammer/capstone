@@ -1,0 +1,25 @@
+.container {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  line-height: 1.5;
+  left: 60%;
+}
+.container div {
+  height: 100%;
+  display: block;
+  width: 40%;
+  /*padding: 0 45px;*/
+}
+.fixed {
+  position: fixed;
+  max-width: 60%;
+  height: 100%;
+  top: 10%;
+  left: 10%;
+}
+.hidden {
+  visibility: hidden;
+}
