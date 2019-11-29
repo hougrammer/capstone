@@ -9,17 +9,19 @@
 }
 .container div {
   height: 100%;
+  width: 100%;
   display: block;
-  width: 40%;
-  /*padding: 0 45px;*/
+  z-index: 1;
 }
 .fixed {
   position: fixed;
-  max-width: 60%;
-  height: 100%;
+  width: 40%;
+  height: 25%;
   top: 10%;
-  left: 10%;
+  left: 5%;
+  z-index: 0;
+  background-color: #f7f5f2;
 }
 .hidden {
-  visibility: hidden;
+  opacity: 0;
 }

@@ -1,5 +1,5 @@
+$(() => {
 // TODO: make this actually request instead of serve static numbers
-
 let subreddits = [
   {name: "annoucements", subscribers: 46875399},
   {name: "funny", subscribers: 26972540},
@@ -12,7 +12,6 @@ let subreddits = [
   {name: "todayilearned", subscribers: 21702372},
   {name: "movies", subscribers: 21702039},
 ]
-$(() => {
 
 subreddits.forEach((subreddit, i) => {
   $("#subredditTable").append(
@@ -48,6 +47,4 @@ $("#subscribersDiv2").waypoint((direction) => {
   offset: "10%"
 })
 
-});
-
-
+}); // end $()

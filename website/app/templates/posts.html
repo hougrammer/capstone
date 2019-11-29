@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 
-{% block content %}
-
-<div class="jumbotron text-center">
+{% block jumbotron %}
   <h1>Posts / Comments</h1>
   <p>What users are saying. And what users are saying about what users are saying.</p> 
-</div>
+{% endblock %}
 
+{% block content %}
 <div class="container">
   <h2>When People Are Posting</h2>
   What were the busiest days of 2018?<br>
@@ -53,13 +52,5 @@
 
   <br>  <br>  <br>  <br>
 
-  <!-- <h2>Pretty Graphs</h2>
-  <img src="https://foundationinc.co/wp-content/uploads/2019/06/Avg-Length-Top-Posts.png" height="400">
-  <img src="https://i.redd.it/yj4otlos2wq31.png" height="400">
-
-  <h2>Sentiment Analyzer</h2>
-  Type keyword in and get sentiment: <input type="text" name="keyword" value=""><br> -->
-
 </div>
-
 {% endblock %}

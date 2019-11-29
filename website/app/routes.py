@@ -40,6 +40,10 @@ def models():
 def posts():
     return render_template('posts.html', main_title='Posts/Comments')
 
+@app.route('/posts2')
+def posts2():
+    return render_template('posts2.html', main_title='Posts/Comments')
+
 @app.route('/subreddits', methods=['GET'])
 def subreddits():
     return render_template('subreddits.html', main_title='Subreddits/Users')

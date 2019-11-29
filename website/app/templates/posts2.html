@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block jumbotron %}
+  <h1>Posts / Comments</h1>
+  <p>What users are saying. And what users are saying about what users are saying.</p> 
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/scrollytelling.css') }}">
+<div>
+  <!-- Fixed divs for visualizations -->
+  <div class="fixed hidden" id="postCountVizDiv">
+    <input id="subredditInput" type="text" onfocus="this.value=''" placeholder="Subreddit">
+    <button id="subredditSubmit" class="btn">Get Post Counts</button>
+    <form>
+      <input type="radio" name="stack" id="relativeRadio" checked="checked">Relative
+      <input type="radio" name="stack" id="absoluteRadio">Absolute
+    </form>
+    <div id="postCountVisualization" style="display: inline-block;"></div>
+    <p id="postStatus" style="font-size: large"></p>
+    <div id="tooltip"></div>
+    <script src="{{ url_for('static', filename='js/posts.js') }}"></script>
+  </div>
+
+  <!-- Divs in containers for explainer text -->
+  <div class="container">
+    <div id="postCountDiv1">
+      <h2>Posts</h2>
+      Posts and comments are the heart of Reddit content.
+    </div>
+    <div id="postCountDiv2">
+      <h2>When People Are Posting</h2>
+      What were the busiest days of 2018?
+    </div>
+    <div id="otherVizzesDiv">
+      <h2>Other Visualizations</h2>
+      <button><a href="{{ url_for('cal') }}">Reddit Heatmap</a></button>
+      <br>
+      <button><a href="{{ url_for('redditcomments') }}">Reddit Comments - AskReddit</a></button>
+      <br>
+      <button><a href="{{ url_for('redditsubreddits') }}">Top Subreddits</a></button>
+      <br>
+      <button>  <a href="{{ url_for('redditauthor') }}">Top Authors</a></button>
+      <br>
+      <button>  <a href="{{ url_for('treemap') }}">Reddit Treemap</a></button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

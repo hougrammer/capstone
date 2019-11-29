@@ -1,5 +1,6 @@
+$(()=> {
 const offset = 0; // Jan 1, 2018 was a Monday
-const margin = { top: 50, right: 50, bottom: 50, left: 50 };
+const margin = { top: 50, right: 50, bottom: 50, left: 10 };
 const height = 200;
 const width = 1000;
 const h = height - margin.top - margin.bottom;
@@ -17,7 +18,8 @@ let relativeMin = 0, relativeMax = 0;
 
 // Set up relative filtering
 let relativeFiltering = true;
-d3.select("#relativeRadio").on("change", () => {
+d3.select("#relativeRadio")
+  .on("change", () => {
     relativeFiltering = true;
     updateScale()
   });
@@ -26,6 +28,11 @@ d3.select("#absoluteRadio")
     relativeFiltering = false;
     updateScale()
   });
+
+// This viz needs to be wide and on top.
+d3.select("#postCountVizDiv")
+  .style("width", "100%")
+  .style("z-index", 2);
 
 // Scales
 let xScale = d3.scaleLinear()
@@ -71,7 +78,7 @@ let monthText = svg.selectAll("text.month")
   .attr('x', (d, i) => xScale(monthLabelOffset[i]) + 5)
   .attr('y', 10);
 
-let tooltip = d3.select('body').append('div')
+let tooltip = d3.select('#tooltip')
   .style('position', 'absolute')
   .style('z-index', '10')
   .style('visibility', 'hidden')
@@ -86,14 +93,18 @@ function onCircleMouseOver(d, i) {
   let text = '<b>Date: </b>' + monthLabels[date.getMonth()] + ' ' + date.getDate() + ', 2018' + 
     '<br>' + '<b>Number of posts: </b>' + d;
   tooltip.html(text)
-    .style('top', (event.pageY - 10) + 'px')
-    .style('left', (event.pageX + 12) + 'px');
+    .style('top', (event.clientY - 100) + 'px')
+    .style('left', (event.clientX + 120) + 'px');
+    // .style('top', (event.pageY - 10) + 'px')
+    // .style('left', (event.pageX + 12) + 'px');
 }
 
 function onCircleMouseMove() {
   tooltip
-    .style('top', (event.pageY - 10) + 'px')
-    .style('left', (event.pageX + 12) + 'px');
+    .style('top', (event.clientY - 100) + 'px')
+    .style('left', (event.clientX - 120) + 'px');
+    // .style('top', (event.pageY - 10) + 'px')
+    // .style('left', (event.pageX + 12) + 'px');
 }
 
 function onCircleMouseOut() {
@@ -206,3 +217,29 @@ d3.select("#subredditInput")
   });
 
 getPostCounts("askreddit");
+
+// Waypoints
+function fade(scrollingDiv, fadingDiv, start, end, steps) {
+  let step = (end - start) / steps;
+  let scale = d3.scaleLinear().domain([start, end]).range([0, 1]);
+  d3.range(start, end+step, step).forEach((offset) => {
+    $(scrollingDiv).waypoint(() => {
+      $(fadingDiv).css("opacity", scale(offset));
+    }, {
+      offset: `${offset}%`
+    });
+  })
+}
+
+fade("#postCountDiv2", "#postCountVizDiv", 100, 75, 5);
+$("#postCountDiv2").waypoint((direction) => {
+  if (direction === "down") {
+    $("#postCountDiv2").css("opacity", 0);
+  } else {
+    $("#postCountDiv2").css("opacity", 1);
+  }
+}, {
+  offset: "25%"
+});
+
+}); // end $()

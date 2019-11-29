@@ -7,8 +7,7 @@
 
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/scrollytelling.css') }}">
-<div id="graphic">
-
+<div>
   <!-- Fixed divs for visualizations -->
   <div class="fixed hidden" id="subredditTableDiv">
     <table class="table" id="subredditTable">
@@ -21,10 +20,10 @@
       </thead>
     </table>
     <small>Data from <a href="https://redditlist.com">redditlist.com</a></small>
-    <script src="{{ url_for('static', filename = 'subreddit_subscribers.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/subreddit_subscribers.js') }}"></script>
   </div>
 
-  <div class="hidden fixed" id="subredditVisualizationDiv">
+  <div class="fixed hidden" id="subredditVisualizationDiv">
     <div>
       <input id="subredditInput" type="text" onfocus="this.value=''" placeholder="Subreddit">
       <button id="subredditSubmit" class="btn">Get Similar Subreddits</button>
@@ -38,10 +37,10 @@
       </small>
     </div>
 
-    <script src="{{ url_for('static', filename = 'subreddit_visualization.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/subreddit_visualization.js') }}"></script>
   </div>
 
-  <!-- Divs in containers for explained text -->
+  <!-- Divs in container for explainer text -->
   <div class="container">
     <div id="subscribersDiv1">
       <h2>What is a Subreddit?</h2>
@@ -79,7 +78,7 @@
     </div>
 
     <div id="postsLinkDiv">
-      <a href="/posts">Posts</a>
+      <a href="/posts2">Posts</a>
     </div>
   </div>
 </div>
