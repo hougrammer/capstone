@@ -23,6 +23,6 @@
   background-color: #f7f5f2;
 }
 .hidden {
-  /*visibility: hidden;*/
+  visibility: hidden;
   opacity: 0;
 }
