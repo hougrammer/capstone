@@ -1,0 +1,26 @@
+#timeInput {
+  width: 50%;
+}
+
+#dateInput {
+  width: 50%;
+}
+
+#imageUpload {
+  box-shadow: none;
+  width: 6rem;
+}
+
+#imageUpload:hover {
+  border: 1px solid #888;
+  cursor: pointer;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+td img {
+  width: 128px;
+  height: 128px;
+}

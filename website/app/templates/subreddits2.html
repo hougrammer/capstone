@@ -1,12 +1,20 @@
 {% extends "base.html" %}
 
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/scrollytelling.css') }}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/subreddit_subscribers.js') }}"></script>
+<script src="{{ url_for('static', filename='js/subreddit_visualization.js') }}"></script>
+{% endblock %}
+
 {% block jumbotron %}
 <h1>Subreddits / Users</h1>
 <p>Statistics and explorations about the users of Reddit and communities they belong to.</p> 
 {% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/scrollytelling.css') }}">
 <div>
   <!-- Fixed divs for visualizations -->
   <div class="fixed hidden" id="subredditTableDiv">
@@ -20,7 +28,6 @@
       </thead>
     </table>
     <small>Data from <a href="https://redditlist.com">redditlist.com</a></small>
-    <script src="{{ url_for('static', filename='js/subreddit_subscribers.js') }}"></script>
   </div>
 
   <div class="fixed hidden" id="subredditVisualizationDiv">
@@ -28,16 +35,12 @@
       <input id="subredditInput" type="text" onfocus="this.value=''" placeholder="Subreddit">
       <button id="subredditSubmit" class="btn">Get Similar Subreddits</button>
     </div>
-
     <div id="subredditVisualization" style="display: inline-block;"></div>
-
     <div>
       <small>
         <a href="https://snap.stanford.edu/data/web-RedditEmbeddings.html">Data source</a>
       </small>
     </div>
-
-    <script src="{{ url_for('static', filename='js/subreddit_visualization.js') }}"></script>
   </div>
 
   <!-- Divs in container for explainer text -->

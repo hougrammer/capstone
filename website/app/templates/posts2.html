@@ -1,12 +1,19 @@
 {% extends "base.html" %}
 
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/scrollytelling.css') }}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/posts.js') }}"></script>
+{% endblock %}
+
 {% block jumbotron %}
   <h1>Posts / Comments</h1>
   <p>What users are saying. And what users are saying about what users are saying.</p> 
 {% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/scrollytelling.css') }}">
 <div>
   <!-- Fixed divs for visualizations -->
   <div class="fixed hidden" id="postCountVizDiv">
@@ -19,7 +26,6 @@
     <div id="postCountVisualization" style="display: inline-block;"></div>
     <p id="postStatus" style="font-size: large"></p>
     <div id="tooltip"></div>
-    <script src="{{ url_for('static', filename='js/posts.js') }}"></script>
   </div>
 
   <!-- Divs in containers for explainer text -->

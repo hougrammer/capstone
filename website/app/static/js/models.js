@@ -50,4 +50,43 @@ d3.select("#scoreSubmit")
     });
   });
 
+// Waypoints
+function fade(scrollingDiv, fadingDiv, start, end, steps) {
+  // Not the most intuitive function parameters, but who's even going to read this other than me?
+  let step = (end - start) / steps;
+  let scale = d3.scaleLinear().domain([start, end]).range([0, 1]);
+  d3.range(start, end+step, step).forEach((offset) => {
+    $(scrollingDiv).waypoint((direction) => {
+      $(fadingDiv).css("opacity", scale(offset));
+    }, {
+      offset: `${offset}%`
+    });
+  })
+}
+
+$("#postScorerInputs").css("visibility", "hidden");
+$("#postScorerDiv1").waypoint((direction) => {
+  $("#postScorerInputs").css("visibility", direction === "down" ? "visible" : "hidden");
+  $("#postScorerInputs").css("opacity", direction === "down" ? 1 : 0);
+});
+fade("#postScorerDiv2", "#titleInputDiv", 100, 50, 5);
+fade("#postScorerDiv3", "#timeInputDiv", 100, 50, 5);
+fade("#postScorerDiv4", "#dateInputDiv", 100, 50, 5);
+fade("#postScorerDiv5", "#scorePostDiv", 100, 50, 5);
+fade("#imageCaptionDiv1", "#postScorerInputs", 50, 90, 5);
+$("#imageCaptionDiv1").waypoint((direction) => {
+  $("#postScorerInputs").css("visibility", direction === "up" ? "visible" : "hidden");
+});
+
+fade("#imageCaptionDiv2", "#imageExamples", 100, 50, 5);
+fade("#imageCaptionDiv2", "#imageExamples", 0, 25, 5);
+fade("#imageCaptionDiv3", "#imageUploadDiv", 90, 50, 5);
+
+fade("#conclusion", "#imageUploadDiv", 60, 100, 5);
+$("#conclusion").waypoint((direction) => {
+  $("#imageUploadDiv").css("visibility", direction === "up" ? "visible" : "hidden");
+}, {
+  offset: "50%"
+});
+
 }); // end $()

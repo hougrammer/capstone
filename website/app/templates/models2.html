@@ -1,92 +1,128 @@
 {% extends "base.html" %}
 
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/scrollytelling.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/models.css') }}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/models.js') }}"></script>
+{% endblock %}
+
 {% block jumbotron %}
 <h1>ML Models</h1>
 <p>Can neural nets learn something about Reddit?</p> 
 {% endblock %}
 
 {% block content %}
-<div class="container">
-  <h2>Post Scorer</h2>
-
-  <div class="row">
-    <div class="col-lg-6">
-      <p>
-        Can we take what we've learned and use it to help judge whether a post a perform well on
-        Reddit? We've seen that there is some temporal relationships in the data. To the right, you
-        can type in a post title and relevant time metadata to get it scored by a neural net.
-      </p>
+<div>
+  <div class="fixed hidden" id="postScorerInputs">
+    <div class="hidden" id="titleInputDiv">
+      <label for="titleInput">Title:</label>
+      <input type="text" id="titleInput">
     </div>
-    <div class="col-lg-6">
-      <style type="text/css">
-        .scoreInput {
-          width: 100%
-        }
-      </style>
-      Title: <input type="text" id="titleInput"><br>
-      Time: <input type="time" id="timeInput"><br>
-      Date: <input type="date" id="dateInput"><br><br>
+    <div class="hidden" id="timeInputDiv">
+      <label for="timeInput">Time:</label>
+      <input type="time" id="timeInput">
+    </div>
+    <div class="hidden" id="dateInputDiv">
+      <label for="dateInput">Date:</label>
+      <input type="date" id="dateInput">
+    </div>
+    <div class="hidden" id="scorePostDiv">
       <button id="scoreSubmit" class="btn">Score Post</button><br>
       <p id="scoreResult"></p>
-      <script src="{{ url_for('static', filename='js/models.js') }}"></script>
     </div>
   </div>
-  
 
-  <h2>Image Caption Generation</h2>
-  <div>
-    <form action="http://127.0.0.1:5000/result" method=post enctype=multipart/form-data>
-      <div class="input-group">
-        <input type=file name=file>
-        <input type=submit value=Upload>
-      </div>
-    </form>
-    <br>
-    <p><small><b>Disclaimer</b>: The algorithms behind this image captioning is based on
-     publicly available image datasets such as Flickr, COCO and Reddit images.
-     Users are advised that texts generated based on reddit dataset can
-     sometimes be aggressive due to the nature of the dataset.
-     Any insult, innuendo, aggressive jokes are subject to user perceptions of
-     the context. Creators of this website will not be responsible for any damages
-     or losses in connection with the use of our website.</small></p>
-     <br>
-  </div>
-
-  <div class="col-lg-6">
-    <h3>Sample Images</h3>
-    <table class="table table-responsive-sm">
+  <div class="fixed hidden" id="imageExamples">
+    <h3>Example Images</h3>
+    <table class="table">
       <thead>
         <tr>
-          <th>Name</th>
           <th>Image</th>
+          <th>Title</th>
+          <th>Comment</th>
         </tr>
       </thead>
-      
       <tr>
-        <td style="vertical-align: middle">
-          <a href="http://127.0.0.1:5000/example_snow">Snowman</a>
-        </td>
         <td> 
-          <img src="{{ images['snow'] }}" alt="example image" style="width:128px;height:128px;">
+          <img src="{{ images['snow'] }}" alt="snowman">
         </td>
+        <td>a man is skiing down a snowy hill</td>
+        <td>looks like the highway to heaven</td>
       </tr>
       <tr>
-        <td style="vertical-align: middle">
-          <a href="http://127.0.0.1:5000/example_lunchbox">Lunch Box</a>
-        </td>
         <td> 
-          <img src="{{ images['lunchbox'] }}" alt="example image" style="width:128px;height:128px;">
+          <img src="{{ images['lunchbox'] }}" alt="lunchbox">
         </td>
+        <td>a plate of food with meat and vegetables</td>
+        <td>you gonna eat that</td>
       </tr>
       <tr>
-        <td style="vertical-align: middle">
-          <a href="http://127.0.0.1:5000/example_parrot">Parrot</a>
-        </td>
         <td>
-          <img src="{{ images['parrot'] }}" alt="example image" style="width:128px;height:128px;"> 
+          <img src="{{ images['parrot'] }}" alt="parrot"> 
         </td>
+        <td>a small bird on a tree branch with a blurry background</td>
+        <td>you found a fossil</td>
       </tr>
     </table>
   </div>
+
+  <div class="fixed hidden" id="imageUploadDiv">
+    <h2>Image Upload</h2>
+    <form action="http://127.0.0.1:5000/result" method=post enctype=multipart/form-data>
+      <div class="input-group">
+        <input type=file name=file>
+        <input type=submit value=Upload id="imageUpload">
+      </div>
+    </form>
+  </div>
+
+  <div class="container">
+    <div id="postScorerDiv1">
+      <h2>Post Scorer</h2>
+      Can we take what we've learned and use it to help judge whether a post a perform well on
+      Reddit?
+    </div>
+    <div id="postScorerDiv2">
+      Try typing in a title of a post you think would do well on 
+      <a href="http://www.reddit.com/r/askreddit">AskReddit</a>.
+    </div>
+    <div id="postScorerDiv3">
+      We've seen some temporal relationships between how well a post does and the time it is posted. 
+      Select a time for your post (PST timezone).
+    </div>
+    <div id="postScorerDiv4">
+      We've also seen that different days of the year have different amounts of subreddit activity. 
+      Pick a date for your post.
+    </div>
+    <div id="postScorerDiv5">
+      Score your post! How does our model think it'll do? Play around with different titles. Try 
+      intentional misspellings or grammatical mistakes. More subreddits support to come soon
+      <sup>TM</sup>.
+    </div>
+
+    <div id="imageCaptionDiv1">
+      <h2>Image Captioner</h2>
+      Text posts are only a small portion of those on Reddit. Most posts link to some sort of media 
+      such as an image or video. We also trained a model automatically generate titles and comments 
+      from a seed image.
+    </div>
+    <div id="imageCaptionDiv2">
+      Here are some examples.
+    </div>
+    <div id="imageCaptionDiv3">
+      Try uploading your own image! Just be aware that the training data for our model comes from 
+      the internet, where not everyone and everything are civil and nice. But upload a picture of a
+      cute cat and it should be fairly tame!
+    </div>
+
+    <div id="conclusion">
+      You've seen what ML models can do for generating Reddit titles and comments. Now explore the
+      <a href="/subreddits2">subreddits</a> or <a href="/posts2">posts</a> of Reddit!
+    </div>
  </div>
+</div>
+
  {% endblock %}
