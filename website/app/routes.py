@@ -36,6 +36,14 @@ def models():
     images_dict = {'snow': snow_image, 'lunchbox': lunch_image, 'parrot': parrot_image}
     return render_template('models.html', main_title='ML Models', images=images_dict)
 
+@app.route('/models2')
+def models2():
+    snow_image = os.path.join(app.config['EXAMPLE_FOLDER'], 'snow.jpg')
+    lunch_image = os.path.join(app.config['EXAMPLE_FOLDER'], 'lunchbox.jpg')
+    parrot_image = os.path.join(app.config['EXAMPLE_FOLDER'], 'parrot.jpg')
+    images_dict = {'snow': snow_image, 'lunchbox': lunch_image, 'parrot': parrot_image}
+    return render_template('models2.html', main_title='ML Models', images=images_dict)
+
 @app.route('/posts')
 def posts():
     return render_template('posts.html', main_title='Posts/Comments')

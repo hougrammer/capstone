@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block jumbotron %}
+<h1>ML Models</h1>
+<p>Can neural nets learn something about Reddit?</p> 
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>Post Scorer</h2>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <p>
+        Can we take what we've learned and use it to help judge whether a post a perform well on
+        Reddit? We've seen that there is some temporal relationships in the data. To the right, you
+        can type in a post title and relevant time metadata to get it scored by a neural net.
+      </p>
+    </div>
+    <div class="col-lg-6">
+      <style type="text/css">
+        .scoreInput {
+          width: 100%
+        }
+      </style>
+      Title: <input type="text" id="titleInput"><br>
+      Time: <input type="time" id="timeInput"><br>
+      Date: <input type="date" id="dateInput"><br><br>
+      <button id="scoreSubmit" class="btn">Score Post</button><br>
+      <p id="scoreResult"></p>
+      <script src="{{ url_for('static', filename='js/models.js') }}"></script>
+    </div>
+  </div>
+  
+
+  <h2>Image Caption Generation</h2>
+  <div>
+    <form action="http://127.0.0.1:5000/result" method=post enctype=multipart/form-data>
+      <div class="input-group">
+        <input type=file name=file>
+        <input type=submit value=Upload>
+      </div>
+    </form>
+    <br>
+    <p><small><b>Disclaimer</b>: The algorithms behind this image captioning is based on
+     publicly available image datasets such as Flickr, COCO and Reddit images.
+     Users are advised that texts generated based on reddit dataset can
+     sometimes be aggressive due to the nature of the dataset.
+     Any insult, innuendo, aggressive jokes are subject to user perceptions of
+     the context. Creators of this website will not be responsible for any damages
+     or losses in connection with the use of our website.</small></p>
+     <br>
+  </div>
+
+  <div class="col-lg-6">
+    <h3>Sample Images</h3>
+    <table class="table table-responsive-sm">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      
+      <tr>
+        <td style="vertical-align: middle">
+          <a href="http://127.0.0.1:5000/example_snow">Snowman</a>
+        </td>
+        <td> 
+          <img src="{{ images['snow'] }}" alt="example image" style="width:128px;height:128px;">
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle">
+          <a href="http://127.0.0.1:5000/example_lunchbox">Lunch Box</a>
+        </td>
+        <td> 
+          <img src="{{ images['lunchbox'] }}" alt="example image" style="width:128px;height:128px;">
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle">
+          <a href="http://127.0.0.1:5000/example_parrot">Parrot</a>
+        </td>
+        <td>
+          <img src="{{ images['parrot'] }}" alt="example image" style="width:128px;height:128px;"> 
+        </td>
+      </tr>
+    </table>
+  </div>
+ </div>
+ {% endblock %}
