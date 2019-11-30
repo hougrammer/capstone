@@ -51,47 +51,35 @@ d3.select("#scoreSubmit")
   });
 
 // Waypoints
-function fade(scrollingDiv, fadingDiv, start, end, steps) {
-  let step = (end - start) / steps;
-  let scale = d3.scaleLinear().domain([start, end]).range([0, 1]);
-  d3.range(start, end+step, step).forEach((offset) => {
-    $(scrollingDiv).waypoint((direction) => {
-      if (offset == start) {
-        $(fadingDiv).css("visibility", direction == "down" ? "visible" : "hidden");
-      }
-      $(fadingDiv).css("opacity", scale(offset));
-    }, {
-      offset: `${offset}%`
-    });
-  })
-}
+// fade() defined in fade.js
 
-$("#postScorerDiv1").waypoint((direction) => {
-  $("#postScorerInputs").css("visibility", direction === "down" ? "visible" : "hidden");
-  $("#postScorerInputs").css("opacity", direction === "down" ? 1 : 0);
-});
-fade("#postScorerDiv2", "#titleInputDiv", 100, 50, 5);
-fade("#postScorerDiv3", "#timeInputDiv", 100, 50, 5);
-fade("#postScorerDiv4", "#dateInputDiv", 100, 50, 5);
-fade("#postScorerDiv5", "#scorePostDiv", 100, 50, 5);
-fade("#imageCaptionDiv1", "#postScorerInputs", 50, 90, 5);
-$("#imageCaptionDiv1").waypoint((direction) => {
-  $("#postScorerInputs").css("visibility", direction === "up" ? "visible" : "hidden");
-  $("#imageExamples").css("visibility", direction === "down" ? "visible" : "hidden");
-});
-fade("#imageCaptionDiv2", "#imageExamples", 100, 50, 5);
-fade("#imageCaptionDiv2", "#imageExamples", 0, 25, 5);
-$("#imageCaptionDiv3").waypoint((direction) => {
-  $("#imageExamples").css("visibility", direction === "down" ? "visible" : "hidden");
-  $("#imageUploadDiv").css("visibility", direction === "up" ? "visible" : "hidden");
-});
-fade("#imageCaptionDiv3", "#imageUploadDiv", 90, 50, 5);
+// $("#postScorerDiv1").waypoint((direction) => {
+//   $("#postScorerInputs").css("visibility", direction === "down" ? "visible" : "hidden");
+//   $("#postScorerInputs").css("opacity", direction === "down" ? 1 : 0);
+// });
+fadeIn("#postScorerDiv1", "#postScorerInputs", 26, 25, 2);
+fadeIn("#postScorerDiv2", "#titleInputDiv", 100, 50, 5);
+fadeIn("#postScorerDiv3", "#timeInputDiv", 100, 50, 5);
+fadeIn("#postScorerDiv4", "#dateInputDiv", 100, 50, 5);
+fadeIn("#postScorerDiv5", "#scorePostDiv", 100, 50, 5);
+fadeOut("#imageCaptionDiv1", "#postScorerInputs", 90, 50, 5);
+// $("#imageCaptionDiv1").waypoint((direction) => {
+//   $("#postScorerInputs").css("visibility", direction === "up" ? "visible" : "hidden");
+//   $("#imageExamples").css("visibility", direction === "down" ? "visible" : "hidden");
+// });
+fadeIn("#imageCaptionDiv2", "#imageExamples", 100, 50, 5);
+fadeOut("#imageCaptionDiv2", "#imageExamples", 25, 0, 5);
+// $("#imageCaptionDiv3").waypoint((direction) => {
+//   $("#imageExamples").css("visibility", direction === "down" ? "visible" : "hidden");
+//   $("#imageUploadDiv").css("visibility", direction === "up" ? "visible" : "hidden");
+// });
+fadeIn("#imageCaptionDiv3", "#imageUploadDiv", 90, 50, 5);
 
-fade("#conclusion", "#imageUploadDiv", 60, 100, 5);
-$("#conclusion").waypoint((direction) => {
-  $("#imageUploadDiv").css("visibility", direction === "up" ? "visible" : "hidden");
-}, {
-  offset: "50%"
-});
+fadeOut("#conclusion", "#imageUploadDiv", 100, 60, 5);
+// $("#conclusion").waypoint((direction) => {
+//   $("#imageUploadDiv").css("visibility", direction === "up" ? "visible" : "hidden");
+// }, {
+//   offset: "50%"
+// });
 
 }); // end $()

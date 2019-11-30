@@ -2,9 +2,11 @@
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/scrollytelling.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/posts.css') }}">
 {% endblock %}
 
 {% block scripts %}
+<script src="{{ url_for('static', filename='js/fade.js') }}"></script>
 <script src="{{ url_for('static', filename='js/posts.js') }}"></script>
 {% endblock %}
 
@@ -17,6 +19,7 @@
 <div>
   <!-- Fixed divs for visualizations -->
   <div class="fixed hidden" id="postCountVizDiv">
+    <h2>Post Calendar</h2>
     <input id="subredditInput" type="text" onfocus="this.value=''" placeholder="Subreddit">
     <button id="subredditSubmit" class="btn">Get Post Counts</button>
     <form>
@@ -49,6 +52,11 @@
       <button>  <a href="{{ url_for('redditauthor') }}">Top Authors</a></button>
       <br>
       <button>  <a href="{{ url_for('treemap') }}">Reddit Treemap</a></button>
+    </div>
+    <div id="conclusion">
+      You've learned a few statistics about posts on reddit. Now explore how they are organized into 
+      <a href="/subreddits2">subreddits</a> or see how machine learning <a href="/posts2">models</a> 
+      can generate posts.
     </div>
   </div>
 </div>

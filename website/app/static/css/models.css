@@ -1,3 +1,11 @@
+label {
+  width: 6rem;
+}
+
+#titleInput {
+  width: 50%;
+}
+
 #timeInput {
   width: 50%;
 }

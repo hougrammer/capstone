@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/subreddit_subscribers.js') }}"></script>
-<script src="{{ url_for('static', filename='js/subreddit_visualization.js') }}"></script>
+<script src="{{ url_for('static', filename='js/fade.js') }}"></script>
+<script src="{{ url_for('static', filename='js/subreddits.js') }}"></script>
 {% endblock %}
 
 {% block jumbotron %}
@@ -80,8 +80,10 @@
       calculate and the semantic meaning is pretty much the same.
     </div>
 
-    <div id="postsLinkDiv">
-      <a href="/posts2">Posts</a>
+    <div id="conclusion">
+      You've learned a bit about how subreddits organize reddit into various topics. Now explore the 
+      actual <a href="/posts2">posts</a> of Reddit or see how machine learning 
+      <a href="/posts2">models</a> can generate novel content.
     </div>
   </div>
 </div>

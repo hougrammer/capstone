@@ -9,7 +9,7 @@ const cellSize = 15;
 const weekdayLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const weekdayMargin = 40;
 const monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-// I'm getting lazy. Just going to hard code this.
+// I'm getting lazy and tired. Just going to hard code the month offsets.
 const monthLabelOffset = [0, 5, 9, 13, 18, 22, 26, 31, 35, 39, 44, 48];
 const monthLengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30]; // no December
 const monthMargin = 0;
@@ -219,27 +219,20 @@ d3.select("#subredditInput")
 getPostCounts("askreddit");
 
 // Waypoints
-function fade(scrollingDiv, fadingDiv, start, end, steps) {
-  let step = (end - start) / steps;
-  let scale = d3.scaleLinear().domain([start, end]).range([0, 1]);
-  d3.range(start, end+step, step).forEach((offset) => {
-    $(scrollingDiv).waypoint(() => {
-      $(fadingDiv).css("opacity", scale(offset));
-    }, {
-      offset: `${offset}%`
-    });
-  })
-}
+// fades defined in fade.js
 
-fade("#postCountDiv2", "#postCountVizDiv", 100, 75, 5);
-$("#postCountDiv2").waypoint((direction) => {
-  if (direction === "down") {
-    $("#postCountDiv2").css("opacity", 0);
-  } else {
-    $("#postCountDiv2").css("opacity", 1);
-  }
-}, {
-  offset: "25%"
-});
+fadeIn("#postCountDiv2", "#postCountVizDiv", 100, 75, 5);
+fadeOut("#postCountDiv2", "#postCountDiv2", 26, 25, 1);
+fadeOut("#otherVizzesDiv", "#postCountVizDiv", 100, 50, 5);
+// fade("#postCountDiv2", "#postCountVizDiv", 100, 75, 5);
+// $("#postCountDiv2").waypoint((direction) => {
+//   if (direction === "down") {
+//     $("#postCountDiv2").css("opacity", 0);
+//   } else {
+//     $("#postCountDiv2").css("opacity", 1);
+//   }
+// }, {
+//   offset: "25%"
+// });
 
 }); // end $()
