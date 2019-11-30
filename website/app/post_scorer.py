@@ -56,7 +56,7 @@ class PostScorer:
         import numpy as np
 
         t = time()
-        print('Scoring title:{}\nhour:{}\nminute:{}\nweekday:{}\ndate:{}'
+        print('Scoring...\ntitle: {}\nhour: {}\nminute: {}\nweekday: {}\ndate: {}'
             .format(title, hour, minute, weekday, dayofyear))
         encoded_title = sequence.pad_sequences(
             self.tokenizer.texts_to_sequences([title]),
@@ -66,9 +66,9 @@ class PostScorer:
             set_session(self.sess)
             score = self.model.predict([
                 encoded_title, 
-                np.array([hour]), 
-                np.array([minute]), 
+                np.array([hour]),
                 np.array([weekday]), 
+                np.array([minute]), 
                 np.array([dayofyear])
             ])[0][0][0]
         print('Score: {} \nElapsed time: {} s'.format(score, time() - t))
