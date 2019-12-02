@@ -29,11 +29,6 @@ d3.select("#absoluteRadio")
     updateScale()
   });
 
-// This viz needs to be wide and on top.
-d3.select("#postCountVizDiv")
-  .style("width", "100%")
-  .style("z-index", 2);
-
 // Scales
 let xScale = d3.scaleLinear()
   .domain([0, 52])
@@ -78,12 +73,7 @@ let monthText = svg.selectAll("text.month")
   .attr('x', (d, i) => xScale(monthLabelOffset[i]) + 5)
   .attr('y', 10);
 
-let tooltip = d3.select('#tooltip')
-  .style('position', 'absolute')
-  .style('z-index', '10')
-  .style('visibility', 'hidden')
-  .style('background', 'rgba(255, 255, 255, .8)')
-  .style('font-size', '12px');
+let tooltip = d3.select('#tooltip');
 
 function onCircleMouseOver(d, i) {
   tooltip.transition()
@@ -93,18 +83,18 @@ function onCircleMouseOver(d, i) {
   let text = '<b>Date: </b>' + monthLabels[date.getMonth()] + ' ' + date.getDate() + ', 2018' + 
     '<br>' + '<b>Number of posts: </b>' + d;
   tooltip.html(text)
-    .style('top', (event.clientY - 100) + 'px')
-    .style('left', (event.clientX + 120) + 'px');
-    // .style('top', (event.pageY - 10) + 'px')
-    // .style('left', (event.pageX + 12) + 'px');
+    // .style('top', (event.clientY - 10) + 'px')
+    // .style('left', (event.clientX + 50) + 'px');
+    .style('top', (event.pageY - 10) + 'px')
+    .style('left', (event.pageX + 12) + 'px');
 }
 
 function onCircleMouseMove() {
   tooltip
-    .style('top', (event.clientY - 100) + 'px')
-    .style('left', (event.clientX - 120) + 'px');
-    // .style('top', (event.pageY - 10) + 'px')
-    // .style('left', (event.pageX + 12) + 'px');
+    // .style('top', (event.clientY - 10) + 'px')
+    // .style('left', (event.clientX - 50) + 'px');
+    .style('top', (event.pageY - 10) + 'px')
+    .style('left', (event.pageX + 12) + 'px');
 }
 
 function onCircleMouseOut() {
@@ -193,7 +183,6 @@ function getPostCounts(subreddit) {
       relativeMax = d3.max(json);
       relativeColorScale.domain([relativeMin, relativeMax]);
       updateData(subreddit, json);
-      console.log(json);
       console.log("completed in " + (performance.now() - t) + "ms");
       console.log("relative min post count: " + relativeMin);
       console.log("relative max post count: " + relativeMax);
@@ -217,22 +206,5 @@ d3.select("#subredditInput")
   });
 
 getPostCounts("askreddit");
-
-// Waypoints
-// fades defined in fade.js
-
-fadeIn("#postCountDiv2", "#postCountVizDiv", 100, 75, 5);
-fadeOut("#postCountDiv2", "#postCountDiv2", 26, 25, 1);
-fadeOut("#otherVizzesDiv", "#postCountVizDiv", 100, 50, 5);
-// fade("#postCountDiv2", "#postCountVizDiv", 100, 75, 5);
-// $("#postCountDiv2").waypoint((direction) => {
-//   if (direction === "down") {
-//     $("#postCountDiv2").css("opacity", 0);
-//   } else {
-//     $("#postCountDiv2").css("opacity", 1);
-//   }
-// }, {
-//   offset: "25%"
-// });
 
 }); // end $()

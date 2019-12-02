@@ -1,28 +1,16 @@
 $(() => {
 // Subscriber table
-// TODO: make this actually request instead of serve static numbers
-let subreddits = [
-  {name: "annoucements", subscribers: 46875399},
-  {name: "funny", subscribers: 26972540},
-  {name: "AskReddit", subscribers: 25025342},
-  {name: "gaming", subscribers: 24004227},
-  {name: "pics", subscribers: 23084009},
-  {name: "science", subscribers: 22628995},
-  {name: "worldnews", subscribers: 22413599},
-  {name: "aww", subscribers: 22327352},
-  {name: "todayilearned", subscribers: 21702372},
-  {name: "movies", subscribers: 21702039},
-]
-
-subreddits.forEach((subreddit, i) => {
-  $("#subredditTable").append(
-    `<tr>
-      <td>${i+1}</td>
-      <td><a href="http://reddit.com/r/${subreddit.name}">${subreddit.name}</a></td>
-      <td>${subreddit.subscribers.toLocaleString()}</td>
-    </tr>`
-  );
-});
+d3.json("/data/subscribers.json").then((json) => {
+  json.forEach((subreddit, i) => {
+    $("#subredditTable").append(
+      `<tr>
+        <td>${i+1}</td>
+        <td><a href="http://reddit.com/r/${subreddit.name}">${subreddit.name}</a></td>
+        <td>${subreddit.subscribers.toLocaleString()}</td>
+      </tr>`
+    );
+  });
+})
 
 // Embedding Visualization
 const margin = { top: 50, right: 50, bottom: 50, left: 50 };
@@ -48,13 +36,11 @@ let colorScale = d3.scaleSequential(d3.interpolateReds)
   .domain([0, maxPercent]);
 
 // Main svg
-let svg0 = d3.select("#subredditVisualization")
+let svg = d3.select("#subredditVisualization")
   .append("svg")
   .attr("width", width)
-  .attr("height", height);
-let svg = svg0.append("g")
-  // .attr("width", w)
-  // .attr("height", h)
+  .attr("height", height)
+  .append("g")
   .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
 // Status text
@@ -217,13 +203,5 @@ d3.select("#subredditInput")
   });
 
 getSimilarSubreddits("askreddit");
-
-// Waypoints
-// fades defined in fade.js
-
-fadeIn("#subscribersDiv2", "#subredditTableDiv", 100, 50, 5);
-fadeOut("#embeddingsDiv1", "#subredditTableDiv", 100, 50, 5);
-fadeIn("#embeddingsDiv2", "#subredditVisualizationDiv", 100, 50, 5);
-fadeOut("#conclusion", "#subredditVisualizationDiv", 100, 50, 5);
 
 }); // end $()

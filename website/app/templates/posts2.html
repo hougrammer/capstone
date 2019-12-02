@@ -7,7 +7,9 @@
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/fade.js') }}"></script>
-<script src="{{ url_for('static', filename='js/posts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/post_stats.js') }}"></script>
+<script src="{{ url_for('static', filename='js/post_calendar.js') }}"></script>
+<script src="{{ url_for('static', filename='js/posts_waypoints.js') }}"></script>
 {% endblock %}
 
 {% block jumbotron %}
@@ -18,7 +20,13 @@
 {% block content %}
 <div>
   <!-- Fixed divs for visualizations -->
-  <div class="fixed hidden" id="postCountVizDiv">
+  <div id="tooltip"></div> 
+
+  <div class="fixed hidden" id="postStatsViz">
+    <h2 id=postStatsTitle></h2>
+  </div>
+
+  <div class="fixed hidden" id="postCountViz">
     <h2>Post Calendar</h2>
     <input id="subredditInput" type="text" onfocus="this.value=''" placeholder="Subreddit">
     <button id="subredditSubmit" class="btn">Get Post Counts</button>
@@ -26,32 +34,61 @@
       <input type="radio" name="stack" id="relativeRadio" checked="checked">Relative
       <input type="radio" name="stack" id="absoluteRadio">Absolute
     </form>
-    <div id="postCountVisualization" style="display: inline-block;"></div>
-    <p id="postStatus" style="font-size: large"></p>
-    <div id="tooltip"></div>
+    <div id="postCountVisualization"></div>
+    <p id="postStatus"></p>
   </div>
+
+  <div class="fixed hidden" id="otherVizzes">
+    <table class="table" id="subredditTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tr>
+        <td><a href="/cal">Long term heatmap</a></td>
+        <td>A longer term look at reddit post density</td>
+      </tr>
+      <tr>
+        <td><a href="/redditcomments">Comment word map</a></td>
+        <td>A word map of terms used in comments</td>
+      </tr>
+      <tr>
+        <td><a href="/redditauthor">Authors</a></td>
+        <td>A treemap of authors</td>
+      </tr>
+      <tr>
+        <td><a href="/treemap">Subreddit treemap</a></td>
+        <td>A treemap of the various subreddits</td>
+      </tr>
+    </table>
+  </div>
+
 
   <!-- Divs in containers for explainer text -->
   <div class="container">
-    <div id="postCountDiv1">
+    <div id="introduction">
       <h2>Posts</h2>
-      Posts and comments are the heart of Reddit content.
+      Posts are the heart of reddit content. Here are some statistics about them.
     </div>
-    <div id="postCountDiv2">
+    <div id="postStatsDiv1">
+      Some posts, termed "self posts", contain only text content. Everything else carries some sort 
+      link to content like an image, video, or external website.
+    </div>
+    <div id="postStatsDiv2">
+      About 41% of posts are text only.
+    </div>
+    <div id="postStatsDiv3">
+      
+    </div>
+    <div id="postCountDiv1">
       <h2>When People Are Posting</h2>
       What were the busiest days of 2018?
     </div>
-    <div id="otherVizzesDiv">
+    <div id="otherVizzesDiv1">
       <h2>Other Visualizations</h2>
-      <button><a href="{{ url_for('cal') }}">Reddit Heatmap</a></button>
-      <br>
-      <button><a href="{{ url_for('redditcomments') }}">Reddit Comments - AskReddit</a></button>
-      <br>
-      <button><a href="{{ url_for('redditsubreddits') }}">Top Subreddits</a></button>
-      <br>
-      <button>  <a href="{{ url_for('redditauthor') }}">Top Authors</a></button>
-      <br>
-      <button>  <a href="{{ url_for('treemap') }}">Reddit Treemap</a></button>
+      Here are some other visualization 
     </div>
     <div id="conclusion">
       You've learned a few statistics about posts on reddit. Now explore how they are organized into 

@@ -60,6 +60,10 @@ def subreddits():
 def subreddits2():
     return render_template('subreddits2.html', main_title='Subreddits/Users')
 
+@app.route('/data/<file>', methods=['GET'])
+def data(file):
+    return send_from_directory('data', file)
+
 @app.route('/closest_subreddits/<subreddit>', methods=['GET'])
 def closest_subreddits(subreddit):
     response = [
@@ -87,8 +91,6 @@ def score_post():
 @app.route('/scrollytelling', methods=['GET'])
 def scrollytelling():
     return render_template('scrollytelling.html')
-
-
 
 @app.route('/image_examples')
 def image_examples():

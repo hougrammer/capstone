@@ -19,17 +19,14 @@ let yScale = d3.scaleLinear()
   .range([0, h])
   .nice();
 let maxPercent = .4;
-let colorScale = d3.scaleSequential(d3.interpolateReds)
+let colorScale = d3.scaleSequential(d3.interpolateOranges)
   .domain([0, maxPercent]);
 
 // Main svg
-let svg0 = d3.select("#subredditVisualization")
+let svg = d3.select("#subredditVisualization")
   .append("svg")
   .attr("width", width)
-  .attr("height", height);
-let svg = svg0.append("g")
-  // .attr("width", w)
-  // .attr("height", h)
+  .attr("height", height)
   .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
 // Status text
