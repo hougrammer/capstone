@@ -17,7 +17,7 @@ post_scorer = PostScorer('app/data/word_tokenizer.pickle', 'app/models/model_lst
 # post_scorer.initialize()
 
 # Only load ML models if not debugging. Else TF takes forever to import.
-# if not app.config['DEBUG']:
+#if not app.config['DEBUG']:
 if True:
     from app.captions_engine import generate_caption
     from werkzeug.utils import secure_filename
@@ -59,6 +59,14 @@ def subreddits():
 @app.route('/subreddits2', methods=['GET'])
 def subreddits2():
     return render_template('subreddits2.html', main_title='Subreddits/Users')
+
+@app.route('/insights', methods=['GET'])
+def insights():
+    return render_template('insights.html', main_title='Subreddits/insights')
+
+@app.route('/ticker', methods=['GET'])
+def ticker():
+    return render_template('ticker.html', main_title='Subreddits/ticker')
 
 @app.route('/data/<file>', methods=['GET'])
 def data(file):
