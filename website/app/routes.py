@@ -66,7 +66,10 @@ def insights():
 
 @app.route('/ticker', methods=['GET'])
 def ticker():
-    return render_template('ticker.html', main_title='Subreddits/ticker')
+    img_url = os.path.join(app.config['EXAMPLE_FOLDER'], 'ticker.png')
+    caption = {"coco": 'Real Time reddit feeds for top subreddits', "reddit": 'Choose the subreddits to listen in'}
+    result = {"image": img_url, "caption": caption}
+    return render_template("ticker.html", results=result)
 
 @app.route('/data/<file>', methods=['GET'])
 def data(file):
