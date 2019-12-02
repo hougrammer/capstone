@@ -15,11 +15,25 @@ $(() => {
   }, {
     offset: "50%"
   });
-
+  $("#postStatsDiv3").waypoint(() => {
+    postStats.plotOverallAverageScore();
+  }, {
+    offset: "50%"
+  });
+  $("#postStatsDiv4").waypoint(() => {
+    postStats.plotAverageScoreByHour();
+  }, {
+    offset: "50%"
+  });
+  $("#postStatsDiv5").waypoint(() => {
+    postStats.plotAverageScoreByDay();
+  }, {
+    offset: "50%"
+  });
   fadeOut("#postCountDiv1", "#postStatsViz", 100, 75, 5);
   fadeIn("#postCountDiv1", "#postCountViz", 100, 75, 5);
   fadeOut("#postCountDiv1", "#postCountDiv1", 26, 25, 1);
-  fadeOut("#otherVizzesDiv1", "#postCountVizDiv", 100, 50, 5);
+  fadeOut("#otherVizzesDiv1", "#postCountViz", 100, 50, 5);
   fadeIn("#otherVizzesDiv1", "#otherVizzes", 100, 50, 5);
   fadeOut("#conclusion", "#otherVizzes", 100, 50, 5)
 });
