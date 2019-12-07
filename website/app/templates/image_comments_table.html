@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/image_comments_table.css') }}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/image_comments.js') }}"></script>
+<script src="{{ url_for('static', filename='js/image_comments_table.js') }}"></script>
+{% endblock %}
+
+{% block jumbotron %}
+<h1>ML Generated Comments</h1>
+{% endblock %}
+
+{% block content %}
+<div id="tableDiv">
+  <table class="table" id="commentTable">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Comment</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+{% endblock %}

@@ -110,6 +110,10 @@ def image_examples():
     images_dict = {'snow': snow_image, 'lunchbox': lunch_image, 'parrot': parrot_image}
     return render_template('image_examples.html', images=images_dict)
 
+@app.route('/image_comments_table')
+def image_comments():
+    return render_template('image_comments_table.html')
+
 @app.route('/result', methods=['GET', 'POST'])
 def result():
     def allowed_file(filename):

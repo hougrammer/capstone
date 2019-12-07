@@ -1,4 +1,4 @@
 *
 !*.json
 !.gitignore
-
+!image_comments.csv

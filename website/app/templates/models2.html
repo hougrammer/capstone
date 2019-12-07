@@ -7,6 +7,7 @@
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/fade.js') }}"></script>
+<script src="{{ url_for('static', filename='js/image_comments.js') }}"></script>
 <script src="{{ url_for('static', filename='js/models.js') }}"></script>
 <script src="{{ url_for('static', filename='js/models_waypoints.js') }}"></script>
 {% endblock %}
@@ -82,6 +83,21 @@
     </form>
   </div>
 
+  <div class="fixed hidden" id="imageComments">
+    <h2>Real Reddit Comments</h2>
+    <table class="table" id="commentTable">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Comment</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tr id="commentRow"></tr>
+    </table>
+    <button class="btn" id="seeAnother">See Another</button>
+  </div>
+
   <div class="container">
     <div id="postScorerDiv1">
       <h2>Post Scorer</h2>
@@ -119,6 +135,21 @@
       Try uploading your own image! Just be aware that the training data for our model comes from 
       the internet, where not everyone and everything are civil and nice. But upload a picture of a
       cute cat and it should be fairly tame!
+    </div>
+
+    <div id="imageCommentsDiv1">
+      We also ran our comment generation model on some real reddit posts. Here are some images, the 
+      generated comment, and the resulting comment score (upvotes minus downvotes). Note that brand 
+      new posts on reddit start with a score of 1.
+    </div>
+    <div id="imageCommentsDiv2">
+      Our best post.
+    </div>
+    <div id="imageCommentsDiv3">
+      Our worst post.
+    </div>
+    <div id="imageCommentsDiv4">
+      You can see all of our posts <a href="/image_comments_table">here</a>.
     </div>
 
     <div id="conclusion">

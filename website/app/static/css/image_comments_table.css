@@ -1,0 +1,14 @@
+#tableDiv {
+  left: 10%;
+  width: 80%;
+  position: absolute;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+td img {
+  width: 128px;
+  height: 128px;
+}
