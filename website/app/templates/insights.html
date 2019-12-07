@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block jumbotron %}
+  <h1>Insights</h1>
+  <br><br>
+  <table style="margin: 0px auto;">
+    <tr>
+
+      <td><h3><center>Reddit data 2006 - 2019 </center></h3> </td>
+    </tr>
+    <tr>
+
+      <td><h3><center>Historical analysis of reddit posts and comments over 12 years to gather insights </center></h3></td>
+    </tr>
+  </table>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+
+  <h2>Reddit posts correlation</h2>
+  <p style="font-size: large" >This heatmap is interactive and provides with number of submissions to reddit daily for 12+ years</p>
+  <button data-toggle-text="Oh no! Switch back!"><a href="{{ url_for('cal') }}">Reddit Heatmap</a></button>
+  
+  <br>  <br>  <br>  <br>
+
+  <h2>Reddit top comments</h2>
+  <p style="font-size: large" >This wordcloud is generated with comments to reddit daily for 12+ years</p>
+  <button data-toggle-text="Oh no! Switch back!"><a href="{{ url_for('redditcomments') }}">Reddit Comments - AskReddit</a></button>
+  
+  <br>  <br>  <br>  <br>
+
+
+  <h2>Reddit top subreddits</h2>
+  <p style="font-size: large" >This treemap is interactive and provides with top subreddits to reddit daily for 12+ years.</p>
+  <button data-toggle-text="Oh no! Switch back!"><a href="{{ url_for('redditsubreddits') }}">Top Subreddits</a></button>
+  
+  <br>  <br>  <br>  <br>
+
+  <h2>Reddit top authors</h2>
+  <p style="font-size: large" >This treemap is interactive and provides with top authors to reddit daily for 12+ years.</p>
+  <button data-toggle-text="Oh no! Switch back!">  <a href="{{ url_for('redditauthor') }}">Top Authors</a></button>
+  
+  <br>  <br>  <br>  <br>
+
+  <h2>Reddit interactive nested posts structure</h2>
+  <p style="font-size: large" >This treemap is interactive and provides with top subreddits to reddit daily for 12+ years.</p>
+  <button data-toggle-text="Oh no! Switch back!">  <a href="{{ url_for('treemap') }}">Reddit Treemap</a></button>
+
+  <br>  <br>  <br>  <br>
+
+</div>
+{% endblock %}

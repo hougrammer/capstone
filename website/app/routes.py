@@ -18,7 +18,6 @@ post_scorer = PostScorer('app/data/word_tokenizer.pickle', 'app/models/model_lst
 
 # Only load ML models if not debugging. Else TF takes forever to import.
 if not app.config['DEBUG']:
-# if True:
     from app.captions_engine import generate_caption
     from werkzeug.utils import secure_filename
     from PIL import Image
@@ -59,6 +58,17 @@ def subreddits():
 @app.route('/subreddits2', methods=['GET'])
 def subreddits2():
     return render_template('subreddits2.html', main_title='Subreddits/Users')
+
+@app.route('/insights', methods=['GET'])
+def insights():
+    return render_template('insights.html', main_title='Subreddits/insights')
+
+@app.route('/ticker', methods=['GET'])
+def ticker():
+    img_url = os.path.join(app.config['EXAMPLE_FOLDER'], 'ticker.png')
+    caption = {"coco": 'Real Time reddit feeds for top subreddits', "reddit": 'Choose the subreddits to listen in'}
+    result = {"image": img_url, "caption": caption}
+    return render_template("ticker.html", results=result)
 
 @app.route('/data/<file>', methods=['GET'])
 def data(file):
