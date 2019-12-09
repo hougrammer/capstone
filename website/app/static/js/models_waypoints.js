@@ -27,7 +27,17 @@ $(() => {
     }, {
       offset: "50%"
     });
+    fadeOut("#imageCommentsDiv4", "#imageComments", 100, 60, 5);
+    fadeIn("#imageCommentsDiv4", "#imageCommentsPlot", 100, 50, 5);
+    $("#imageCommentsDiv4").waypoint(direction => {
+      if (direction == "down") {
+        imageComments.clearChart();
+        imageComments.plotChart();
+      }
+    }, {
+      offset: "60%"
+    });
   });
 
-  fadeOut("#conclusion", "#imageComments", 100, 60, 5);
+  fadeOut("#conclusion", "#imageCommentsPlot", 100, 60, 5);
 });

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/scrollytelling.css') }}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/fade.js') }}"></script>
+<script src="{{ url_for('static', filename='js/model_architecture.js') }}"></script>
+{% endblock %}
+
+{% block jumbotron %}
+<h1>Model Architecture</h1>
+{% endblock %}
+
+{% block content %}
+<div>
+  <div class="fixed hidden" id="postScorer">
+    <img src="/img/post_scorer.png" style="width: 100%">
+  </div>
+  <div class="fixed hidden" id="imageCaptioner">
+    <img src="/img/image_captioner.png" style="width: 100%">
+  </div>
+
+  <div class="container">
+    <div id="introduction">
+      Here we present the architectures of our ML models.
+    </div>
+
+    <div id="postScorerDiv1">
+      <h1>Post Scorer</h1>
+      <p>The network takes in the title and 4 temporal inputs as features. All features get embedded.
+      The word embeddings are 100D (going to higher dimensions did not emperically increase 
+      performance). Temporal features are embedded using natural dimensions, i.e. hour and minute 
+      are 60D, weekday is 7D, etc.</p>
+      <p>Word embeddings are seeded using GloVe but allowed to train along with the rest of the 
+      weights. They are fed into an LSTM outputing 256D latent vectors. Everything is concatenated 
+      together fed into a 256D fully connected layer for predicting whether a post will do well.</p>
+    </div>
+
+    <div id="imageCaptionerDiv1">
+      <h1>Image Captioner</h1>
+      <p>The image is processed using VGG16, where the CNN weights are fully frozen. The image is 
+      converted into a 512D latent vector, which is used as the initial state in a GRU based RNN. 
+      GRU cells were selected over LSTM cells based on literature finding no significant gains from 
+      the extra short term memory. Word embedding inputs to the RNN are 128D.</p>
+      <p>Due to the limitations of the reddit API, most of the training data for the network actually 
+      came from other image sources, such as COCO and Flickr.</p>
+    </div>
+
+    <div id="conclusion">
+      Back to <a href="/models2">models overview</a>.
+    </div>
+  </div>
+</div>
+{% endblock %}

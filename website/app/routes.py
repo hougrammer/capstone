@@ -43,6 +43,14 @@ def models2():
     images_dict = {'snow': snow_image, 'lunchbox': lunch_image, 'parrot': parrot_image}
     return render_template('models2.html', main_title='ML Models', images=images_dict)
 
+@app.route('/image_comments_table')
+def image_comments():
+    return render_template('image_comments_table.html', main_title='Image Comments')
+
+@app.route('/model_architecture')
+def model_architecture():
+    return render_template('model_architecture.html', main_title='Model Architecture')
+
 @app.route('/posts')
 def posts():
     return render_template('posts.html', main_title='Posts/Comments')
@@ -73,6 +81,10 @@ def ticker():
 @app.route('/data/<file>', methods=['GET'])
 def data(file):
     return send_from_directory('data', file)
+
+@app.route('/img/<file>', methods=['GET'])
+def img(file):
+    return send_from_directory('static/imgs', file)
 
 @app.route('/closest_subreddits/<subreddit>', methods=['GET'])
 def closest_subreddits(subreddit):
@@ -109,10 +121,6 @@ def image_examples():
     parrot_image = os.path.join(app.config['EXAMPLE_FOLDER'], 'parrot.jpg')
     images_dict = {'snow': snow_image, 'lunchbox': lunch_image, 'parrot': parrot_image}
     return render_template('image_examples.html', images=images_dict)
-
-@app.route('/image_comments_table')
-def image_comments():
-    return render_template('image_comments_table.html')
 
 @app.route('/result', methods=['GET', 'POST'])
 def result():
