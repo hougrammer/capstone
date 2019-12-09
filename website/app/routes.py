@@ -17,7 +17,8 @@ post_scorer = PostScorer('app/data/word_tokenizer.pickle', 'app/models/model_lst
 # post_scorer.initialize()
 
 # Only load ML models if not debugging. Else TF takes forever to import.
-if not app.config['DEBUG']:
+# if not app.config['DEBUG']:
+if True:
     from app.captions_engine import generate_caption
     from werkzeug.utils import secure_filename
     from PIL import Image
