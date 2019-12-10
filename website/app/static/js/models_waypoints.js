@@ -11,6 +11,8 @@ $(() => {
   fadeIn("#imageCaptionDiv3", "#imageUploadDiv", 90, 50, 5);
 
   fadeOut("#imageCommentsDiv1", "#imageUploadDiv", 90, 50, 5);
+  fadeOut("#modelArchitectureDiv1", "#imageUploadDiv", 90, 50, 5);
+
   fadeIn("#imageCommentsDiv1", "#imageComments", 100, 50, 5);
 
   d3.csv("/data/image_comments.csv").then(data => {
